@@ -1,4 +1,6 @@
 :root {
+  color-scheme: dark;
+
   --bg: #0f1117;
   --bg-2: #0a0c11;
 
@@ -30,6 +32,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #0a0c11;
 }
 
 body {
@@ -38,7 +41,8 @@ body {
   overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
   color: var(--text);
-  background:
+  background-color: #0a0c11;
+  background-image:
     radial-gradient(circle at 18% 0%, rgba(120, 130, 160, 0.14), transparent 34%),
     radial-gradient(circle at 82% 0%, rgba(120, 130, 160, 0.11), transparent 34%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
@@ -52,28 +56,27 @@ body::after {
   border-radius: 999px;
   pointer-events: none;
   z-index: 0;
-  filter: blur(140px);
-  opacity: 0.55;
-  animation: breathe 15s ease-in-out infinite;
+  filter: blur(160px);
+  opacity: 0.42;
+  animation: breathe 18s ease-in-out infinite;
 }
 
 body::before {
-  top: -120px;
-  left: -120px;
-  width: 320px;
-  height: 320px;
-  background: rgba(118, 138, 188, 0.12);
+  top: -140px;
+  left: -140px;
+  width: 340px;
+  height: 340px;
+  background: rgba(118, 138, 188, 0.09);
 }
 
 body::after {
-  top: 20%;
-  right: -120px;
-  width: 320px;
-  height: 320px;
-  background: rgba(128, 118, 188, 0.10);
-  animation-duration: 18s;
+  top: 18%;
+  right: -140px;
+  width: 340px;
+  height: 340px;
+  background: rgba(128, 118, 188, 0.07);
+  animation-duration: 22s;
 }
-
 .shell::before {
   content: "";
   position: fixed;
@@ -574,4 +577,54 @@ details.phase[open] .phase-chevron::before {
   .list-item {
     padding: 12px 13px;
   }
+  /* ===== hard dark fix ===== */
+
+body,
+h1,
+h2,
+h3,
+p,
+a,
+.brand,
+.back-btn,
+.mini-title,
+.phase-title,
+.list-item-title,
+.list-item,
+.path-item {
+  color: var(--text);
+}
+
+.page-subtitle,
+.hero-card p,
+.section-heading p,
+.phase-desc,
+.path-desc,
+.list-item-type,
+.phase-badge {
+  color: var(--muted);
+}
+
+.hero-card,
+.mini-card,
+.phase,
+.list-wrap,
+.path-item,
+.list-item,
+.back-btn {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+input,
+select,
+textarea,
+button {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #0a0c11;
+}
 }
