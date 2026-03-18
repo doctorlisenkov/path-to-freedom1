@@ -99,7 +99,7 @@ window.APP_DATA = {
     { id: 11, title: 'С чего нужно начать', link: 'https://t.me/c/3734713069/20', type: 'podcast' },
     { id: 12, title: 'Что такое Сущность', link: 'https://t.me/c/3734713069/21', type: 'podcast' },
     { id: 13, title: 'Медитация сущность', link: 'https://t.me/c/3734713069/23', type: 'meditation' },
-    { id: 14, title: 'Восстановление после употребления', link: 'https://t.me/c/3734713069/25', type: 'lecture' },
+    { id: 14, title: 'Восстановление после употребления', link: 'https://t.me/c/3734713069/25', type: 'podcast' },
     { id: 15, title: 'Медитация: Осознай бесконечность', link: 'https://t.me/c/3734713069/27', type: 'meditation' },
     { id: 16, title: 'Не ругай себя за срыв', link: 'https://t.me/c/3734713069/29', type: 'podcast' },
 
@@ -146,7 +146,7 @@ window.APP_DATA = {
     meditations: [13,15,19,25,33,38,39,41,46,51],
     lectures: [17,26,31,47,48],
     practices: [20,21,22,23,24],
-    addiction: [14,16],
+    addiction: [14,16,24],
     materials: [30,32,40,49]
   }
 
