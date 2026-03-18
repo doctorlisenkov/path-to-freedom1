@@ -229,7 +229,7 @@ p {
   justify-content: flex-start;        /* выравнивание влево */
   align-items: center;
 
-  padding: 64px 20px 32px;            /* больше воздуха сверху */
+  padding: 24px 20px 24px;            /* больше воздуха сверху */
   text-align: left;                   /* текст строго по левому краю */
 }
 
@@ -238,7 +238,7 @@ p {
   max-width: 520px;                  /* ограничение ширины */
 
   /* главный отступ слева */
-  margin-left: clamp(16px, 6vw, 80px);
+  margin-left: clamp(14px, 6vw, 80px);
 }
 
 /* ЗАГОЛОВОК */
