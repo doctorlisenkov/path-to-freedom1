@@ -307,15 +307,6 @@ function renderFullPath() {
     <section class="view-shell">
 
       <!-- Вступление к основному маршруту -->
-      <section class="path-intro fade-up fade-1">
-        <div class="section-heading wide">
-          <h3>Основной путь</h3>
-          <p class="path-desc">
-            Последовательный маршрут лекций, практик и медитаций.
-            Проходи его в своём темпе и возвращайся к важному столько, сколько нужно.
-          </p>
-        </div>
-      </section>
 
       <!-- Список этапов -->
       <section class="phases-stack">
