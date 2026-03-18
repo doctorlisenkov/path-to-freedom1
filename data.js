@@ -101,7 +101,7 @@ window.APP_DATA = {
     { id: 13, title: 'Медитация сущность', link: 'https://t.me/c/3734713069/23', type: 'meditation' },
     { id: 14, title: 'Восстановление после употребления', link: 'https://t.me/c/3734713069/25', type: 'addiction' },
     { id: 15, title: 'Медитация: Осознай бесконечность', link: 'https://t.me/c/3734713069/27', type: 'meditation' },
-    { id: 16, title: 'Не ругай себя за срыв', link: 'https://t.me/c/3734713069/29', type: 'addiction' },
+    { id: 16, title: 'Не ругай себя за срыв', link: 'https://t.me/c/3734713069/29', type: 'podcast' },
 
     { id: 17, title: 'Моё тело', link: 'https://t.me/c/3734713069/33', type: 'lecture' },
     { id: 18, title: 'Возможности тела', link: 'https://t.me/c/3734713069/34', type: 'podcast' },
