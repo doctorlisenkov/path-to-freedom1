@@ -158,7 +158,6 @@ function availablePhaseCard(phase) {
           <div class="phase-title">${escapeHtml(phase.title)}</div>
           <div class="phase-desc">${escapeHtml(phase.description)}</div>
         </div>
-        <span class="phase-chevron" aria-hidden="true"></span>
       </summary>
       <div class="phase-content">
         <div class="path-list">${items}</div>
@@ -166,7 +165,6 @@ function availablePhaseCard(phase) {
     </details>
   `;
 }
-
 function renderHome() {
   const hero = window.APP_DATA.sections.find(section => section.id === 'full-path');
   const secondary = window.APP_DATA.sections.filter(section => section.id !== 'full-path');
