@@ -1,7 +1,17 @@
+/* =========================================================
+   1. СОСТОЯНИЕ ПРИЛОЖЕНИЯ
+   Здесь хранится, какой экран сейчас открыт
+   home / full-path / meditations / lectures и т.д.
+========================================================= */
 const state = {
   activeView: 'home'
 };
 
+/* =========================================================
+   2. ПОДПИСИ ТИПОВ МАТЕРИАЛОВ
+   Эти названия показываются справа у ссылок:
+   Лекция / Медитация / Практика / Материал / Размышление
+========================================================= */
 const TYPE_LABELS = {
   meditation: 'Медитация',
   lecture: 'Лекция',
@@ -10,6 +20,13 @@ const TYPE_LABELS = {
   podcast: 'Размышление'
 };
 
+/* =========================================================
+   3. МЕТА-ДАННЫЕ ЭКРАНОВ
+   Что показывать в верхнем заголовке страницы:
+   - title    = главный заголовок
+   - subtitle = подзаголовок
+   - theme    = CSS-класс темы страницы
+========================================================= */
 const VIEW_META = {
   home: {
     title: '',
@@ -48,6 +65,11 @@ const VIEW_META = {
   }
 };
 
+/* =========================================================
+   4. SVG-ИКОНКИ ДЛЯ КАРТОЧЕК НА ГЛАВНОЙ
+   Используются у разделов:
+   Медитации / Лекции / Практики / Зависимость / Материалы
+========================================================= */
 const ICONS = {
   meditations: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -90,18 +112,32 @@ const ICONS = {
     </svg>`
 };
 
+/* =========================================================
+   5. УТИЛИТЫ
+   Вспомогательные функции
+========================================================= */
+
+/* Получить элемент по id */
 function byId(id) {
   return document.getElementById(id);
 }
 
+/* Собираем Map всех материалов:
+   id материала -> объект материала
+   Это нужно, чтобы быстро находить материалы по id
+*/
 function itemMap() {
   const map = new Map();
-  (window.APP_DATA.items || []).forEach(item => map.set(item.id, item));
+  (window.APP_DATA.items || []).forEach(item => {
+    map.set(item.id, item);
+  });
   return map;
 }
 
+/* Готовая карта всех материалов */
 const ITEMS = itemMap();
 
+/* Защита текста от HTML-вставок */
 function escapeHtml(value = '') {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -111,6 +147,14 @@ function escapeHtml(value = '') {
     .replaceAll("'", '&#039;');
 }
 
+/* =========================================================
+   6. ШАБЛОНЫ ОТДЕЛЬНЫХ ССЫЛОК
+   Это строки внутри списков материалов
+========================================================= */
+
+/* Обычный элемент списка для разделов:
+   медитации / лекции / практики / материалы
+*/
 function listItem(item) {
   return `
     <a class="list-item" href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">
@@ -120,6 +164,7 @@ function listItem(item) {
   `;
 }
 
+/* Элемент списка внутри основного маршрута */
 function pathListItem(item) {
   return `
     <a class="path-item" href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">
@@ -129,6 +174,15 @@ function pathListItem(item) {
   `;
 }
 
+/* =========================================================
+   7. КАРТОЧКИ ЭТАПОВ ОСНОВНОГО МАРШРУТА
+========================================================= */
+
+/* Неживая карточка этапа:
+   - не раскрывается
+   - не кликается как этап
+   - показывает статус "Скоро"
+*/
 function plannedPhaseCard(phase) {
   return `
     <article class="phase phase-planned fade-up fade-2 is-static">
@@ -143,6 +197,10 @@ function plannedPhaseCard(phase) {
   `;
 }
 
+/* Живая карточка этапа:
+   - раскрывается
+   - внутри показывает список материалов этапа
+*/
 function availablePhaseCard(phase) {
   const items = (phase.items || [])
     .map(id => ITEMS.get(id))
@@ -165,15 +223,31 @@ function availablePhaseCard(phase) {
   `;
 }
 
+/* =========================================================
+   8. РЕНДЕР ГЛАВНОЙ СТРАНИЦЫ
+   Здесь собирается главная:
+   - большая карточка "Основной маршрут"
+   - сетка вторичных карточек
+========================================================= */
 function renderHome() {
   const sections = window.APP_DATA.sections || [];
+
+  /* Главная карточка "Основной маршрут" */
   const hero = sections.find(section => section.id === 'full-path');
+
+  /* Остальные карточки */
   const secondary = sections.filter(section => section.id !== 'full-path');
+
+  /* Первые 4 идут в сетку */
   const topTiles = secondary.slice(0, 4);
+
+  /* Пятая идёт широкой карточкой снизу */
   const bottomTile = secondary[4];
 
   return `
     <section class="view-shell home-shell">
+
+      <!-- Главная карточка -->
       <section class="hero-card hero-card-simple clickable fade-up fade-1" data-view="full-path">
         <div class="hero-card-text">
           <h2>${escapeHtml(hero?.title || 'Основной маршрут')}</h2>
@@ -181,6 +255,7 @@ function renderHome() {
         </div>
       </section>
 
+      <!-- Верхняя сетка плиток -->
       <section class="secondary-grid fade-up fade-2">
         ${topTiles.map(section => `
           <article class="mini-card clickable" data-view="${escapeHtml(section.id)}">
@@ -190,6 +265,7 @@ function renderHome() {
         `).join('')}
       </section>
 
+      <!-- Нижняя широкая плитка -->
       ${bottomTile ? `
         <section class="wide-tile-wrap fade-up fade-3">
           <article class="mini-card mini-card-wide clickable" data-view="${escapeHtml(bottomTile.id)}">
@@ -198,22 +274,39 @@ function renderHome() {
           </article>
         </section>
       ` : ''}
+
     </section>
   `;
 }
 
+/* =========================================================
+   9. РЕНДЕР ОСНОВНОГО МАРШРУТА
+   Это экран с этапами пути
+
+   ВАЖНО:
+   Здесь исправлена логика:
+   - planned берётся из phase.status === 'planned'
+   - available = всё остальное доступное
+========================================================= */
 function renderFullPath() {
   const phases = window.APP_DATA.phases || [];
 
   const html = phases.map((phase) => {
-    if (phase.planned) {
+
+    /* Если этап помечен как planned — показываем "Скоро" */
+    if (phase.status === 'planned') {
       return plannedPhaseCard(phase);
     }
+
+    /* Иначе этап считается живым и раскрываемым */
     return availablePhaseCard(phase);
+
   }).join('');
 
   return `
     <section class="view-shell">
+
+      <!-- Вступление к основному маршруту -->
       <section class="path-intro fade-up fade-1">
         <div class="section-heading wide">
           <h3>Основной путь</h3>
@@ -224,13 +317,24 @@ function renderFullPath() {
         </div>
       </section>
 
+      <!-- Список этапов -->
       <section class="phases-stack">
         ${html}
       </section>
+
     </section>
   `;
 }
 
+/* =========================================================
+   10. РЕНДЕР ОТДЕЛЬНЫХ РАЗДЕЛОВ
+   Для экранов:
+   - meditations
+   - lectures
+   - practices
+   - addiction
+   - materials
+========================================================= */
 function renderCurated(viewId) {
   const curated = window.APP_DATA.curated || {};
   const ids = curated[viewId] || [];
@@ -243,15 +347,23 @@ function renderCurated(viewId) {
 
   return `
     <section class="view-shell">
-      <section class="list-wrap fade-up fade-1">${items}</section>
+      <section class="list-wrap fade-up fade-1">
+        ${items}
+      </section>
     </section>
   `;
 }
 
+/* =========================================================
+   11. ПЛАВНАЯ СМЕНА КОНТЕНТА
+   Меняет содержимое #app и заново навешивает клики
+========================================================= */
 function animateContentSwap(root, html) {
   root.classList.remove('is-visible');
+
   requestAnimationFrame(() => {
     root.innerHTML = html;
+
     requestAnimationFrame(() => {
       root.classList.add('is-visible');
       bindClicks();
@@ -259,22 +371,36 @@ function animateContentSwap(root, html) {
   });
 }
 
+/* =========================================================
+   12. ГЛАВНЫЙ РЕНДЕРЕР
+   Определяет, какой экран показывать сейчас
+========================================================= */
 function renderView() {
   const root = byId('app');
   const meta = VIEW_META[state.activeView] || VIEW_META.home;
 
+  /* Меняем тему body */
   document.body.className = meta.theme;
+
+  /* Меняем заголовки наверху */
   byId('pageTitle').textContent = meta.title;
   byId('pageTitle').classList.remove('is-letter-title');
   byId('pageSubtitle').textContent = meta.subtitle;
+
+  /* Кнопка "Назад" скрыта только на главной */
   byId('backBtn').hidden = state.activeView === 'home';
 
   let html = '';
 
+  /* Главная */
   if (state.activeView === 'home') {
     html = renderHome();
+
+  /* Основной маршрут */
   } else if (state.activeView === 'full-path') {
     html = renderFullPath();
+
+  /* Все остальные разделы */
   } else {
     html = renderCurated(state.activeView);
   }
@@ -282,6 +408,10 @@ function renderView() {
   animateContentSwap(root, html);
 }
 
+/* =========================================================
+   13. ПЕРЕХОДЫ ПО КАРТОЧКАМ
+   Всё, у чего есть data-view, работает как переход
+========================================================= */
 function bindClicks() {
   document.querySelectorAll('[data-view]').forEach(node => {
     node.addEventListener('click', (event) => {
@@ -295,17 +425,26 @@ function bindClicks() {
   });
 }
 
+/* =========================================================
+   14. ЗАПУСК ПРИЛОЖЕНИЯ
+   Выполняется после загрузки страницы
+========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* Название бренда в шапке */
   byId('brandTitle').textContent = window.APP_DATA.brand.title;
 
+  /* Кнопка "Назад" всегда возвращает на главную */
   byId('backBtn').addEventListener('click', () => {
     state.activeView = 'home';
     renderView();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+  /* Подготавливаем корневой контейнер */
   const root = byId('app');
   root.classList.add('app-fade');
 
+  /* Первый рендер */
   renderView();
 });
