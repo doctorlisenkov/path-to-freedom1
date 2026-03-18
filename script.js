@@ -19,7 +19,7 @@ const VIEW_META = {
   },
   'full-path': {
     title: 'Основной маршрут',
-    subtitle: 'Последовательный маршрут, который можно проходить шаг за шагом в своём темпе.',
+    subtitle: 'последовательная система лекций, медитаций и практик. Ты проходишь её в своём темпе: от знакомства с собой к освобождению, принятию и пониманию. Не торопись. Возвращайся если необходимо переслушать.',
     theme: 'theme-path'
   },
   meditations: {
@@ -199,20 +199,6 @@ function renderHome() {
           <div class="mini-title">${escapeHtml(bottomTile.title)}</div>
         </article>
       </section>` : ''}
-    </section>
-  `;
-}
-
-function renderFullPath() {
-  return `
-    <section class="view-shell">
-      <section class="section-heading wide fade-up fade-1 path-intro">
-        <h3>Полный путь</h3>
-        <p>Проходите этапы последовательно или возвращайтесь к нужному разделу в своём темпе.</p>
-      </section>
-      <section class="phases-stack fade-up fade-2">
-        ${window.APP_DATA.phases.map(phase => phase.status === 'planned' ? plannedPhaseCard(phase) : availablePhaseCard(phase)).join('')}
-      </section>
     </section>
   `;
 }
