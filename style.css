@@ -551,20 +551,24 @@ details.phase[open] {
 
 /* Общий вид неактивной карточки */
 .phase.is-static {
-  opacity: 0.45;
   cursor: default;
+  border-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.022)
+  );
 }
 
-/* Шапка карточки (нужна для позиционирования бейджа) */
-.phase-static-head {
-  position: relative;
-}
-
-/* Отключаем клик и нажатие */
+/* Шапка карточки: нужна для позиционирования бейджа
+   и для запаса справа, чтобы текст не лез под "Скоро" */
 .phase.is-static .phase-static-head {
+  position: relative;
   cursor: default;
+  padding-right: 92px;
 }
 
+/* Отключаем эффект нажатия */
 .phase.is-static .phase-static-head:active {
   transform: none;
   opacity: 1;
@@ -573,12 +577,35 @@ details.phase[open] {
 /* Убираем hover-эффекты */
 .phase.is-static:hover {
   transform: none;
-  border-color: var(--line);
+  border-color: rgba(255, 255, 255, 0.08);
   background: linear-gradient(
     145deg,
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0.025)
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.022)
   );
+}
+
+/* Приглушаем только текст, а не всю карточку */
+.phase.is-static .phase-title,
+.phase.is-static .phase-desc {
+  opacity: 0.52;
+}
+
+/* Бейдж "Скоро" как статус */
+.phase.is-static .phase-badge {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  font-size: 10px;
+  line-height: 1;
+  padding: 6px 9px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(190, 205, 255, 0.82);
+  opacity: 1;
 }
 
 /* Бейдж "Скоро" — теперь как статус, а не как контент */
