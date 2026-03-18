@@ -1,15 +1,7 @@
-/* =========================================================
-   1. СОСТОЯНИЕ ПРИЛОЖЕНИЯ
-   Хранит, какая страница сейчас открыта
-========================================================= */
 const state = {
   activeView: 'home'
 };
 
-/* =========================================================
-   2. ПОДПИСИ ТИПОВ МАТЕРИАЛОВ
-   Как будут называться типы справа в списках
-========================================================= */
 const TYPE_LABELS = {
   meditation: 'Медитация',
   lecture: 'Лекция',
@@ -18,10 +10,6 @@ const TYPE_LABELS = {
   podcast: 'Размышление'
 };
 
-/* =========================================================
-   3. МЕТА-ДАННЫЕ СТРАНИЦ
-   Заголовок, подзаголовок и тема для каждой страницы
-========================================================= */
 const VIEW_META = {
   home: {
     title: '',
@@ -60,9 +48,6 @@ const VIEW_META = {
   }
 };
 
-/* =========================================================
-   4. SVG-ИКОНКИ ДЛЯ КАРТОЧЕК НА ГЛАВНОЙ
-========================================================= */
 const ICONS = {
   meditations: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -105,16 +90,10 @@ const ICONS = {
     </svg>`
 };
 
-/* =========================================================
-   5. УТИЛИТЫ
-========================================================= */
-
-/* Быстрый доступ к элементу по id */
 function byId(id) {
   return document.getElementById(id);
 }
 
-/* Собираем Map из всех материалов для быстрого поиска по id */
 function itemMap() {
   const map = new Map();
   (window.APP_DATA.items || []).forEach(item => map.set(item.id, item));
@@ -123,7 +102,6 @@ function itemMap() {
 
 const ITEMS = itemMap();
 
-/* Защита от HTML-вставок в текстах */
 function escapeHtml(value = '') {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -133,11 +111,6 @@ function escapeHtml(value = '') {
     .replaceAll("'", '&#039;');
 }
 
-/* =========================================================
-   6. ШАБЛОНЫ ОТДЕЛЬНЫХ ЭЛЕМЕНТОВ
-========================================================= */
-
-/* Обычный пункт списка в разделах */
 function listItem(item) {
   return `
     <a class="list-item" href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">
@@ -147,7 +120,6 @@ function listItem(item) {
   `;
 }
 
-/* Пункт списка внутри этапа пути */
 function pathListItem(item) {
   return `
     <a class="path-item" href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">
@@ -157,7 +129,6 @@ function pathListItem(item) {
   `;
 }
 
-/* Карточка этапа, который пока недоступен */
 function plannedPhaseCard(phase) {
   return `
     <article class="phase phase-planned fade-up fade-2 is-static">
@@ -172,7 +143,6 @@ function plannedPhaseCard(phase) {
   `;
 }
 
-/* Карточка доступного этапа с раскрытием */
 function availablePhaseCard(phase) {
   const items = (phase.items || [])
     .map(id => ITEMS.get(id))
@@ -195,10 +165,6 @@ function availablePhaseCard(phase) {
   `;
 }
 
-/* =========================================================
-   7. РЕНДЕР ГЛАВНОЙ СТРАНИЦЫ
-   ВАЖНО: стрелку справа убрали полностью
-========================================================= */
 function renderHome() {
   const sections = window.APP_DATA.sections || [];
   const hero = sections.find(section => section.id === 'full-path');
@@ -208,7 +174,6 @@ function renderHome() {
 
   return `
     <section class="view-shell home-shell">
-
       <section class="hero-card hero-card-simple clickable fade-up fade-1" data-view="full-path">
         <div class="hero-card-text">
           <h2>${escapeHtml(hero?.title || 'Основной маршрут')}</h2>
@@ -233,15 +198,10 @@ function renderHome() {
           </article>
         </section>
       ` : ''}
-
     </section>
   `;
 }
 
-/* =========================================================
-   8. РЕНДЕР ОСНОВНОГО МАРШРУТА
-   ЭТОЙ ФУНКЦИИ ТЕБЕ НЕ ХВАТАЛО — ИЗ-ЗА ЭТОГО БЫЛ БАГ
-========================================================= */
 function renderFullPath() {
   const phases = window.APP_DATA.phases || [];
 
@@ -254,7 +214,6 @@ function renderFullPath() {
 
   return `
     <section class="view-shell">
-
       <section class="path-intro fade-up fade-1">
         <div class="section-heading wide">
           <h3>Основной путь</h3>
@@ -268,15 +227,10 @@ function renderFullPath() {
       <section class="phases-stack">
         ${html}
       </section>
-
     </section>
   `;
 }
 
-/* =========================================================
-   9. РЕНДЕР ОТДЕЛЬНЫХ РАЗДЕЛОВ
-   Медитации, лекции, практики, материалы и т.д.
-========================================================= */
 function renderCurated(viewId) {
   const curated = window.APP_DATA.curated || {};
   const ids = curated[viewId] || [];
@@ -289,23 +243,15 @@ function renderCurated(viewId) {
 
   return `
     <section class="view-shell">
-      <section class="list-wrap fade-up fade-1">
-        ${items}
-      </section>
+      <section class="list-wrap fade-up fade-1">${items}</section>
     </section>
   `;
 }
 
-/* =========================================================
-   10. ПЛАВНАЯ СМЕНА КОНТЕНТА
-   Меняет содержимое #app и заново привязывает клики
-========================================================= */
 function animateContentSwap(root, html) {
   root.classList.remove('is-visible');
-
   requestAnimationFrame(() => {
     root.innerHTML = html;
-
     requestAnimationFrame(() => {
       root.classList.add('is-visible');
       bindClicks();
@@ -313,10 +259,6 @@ function animateContentSwap(root, html) {
   });
 }
 
-/* =========================================================
-   11. ГЛАВНЫЙ РЕНДЕРЕР
-   Определяет, какую страницу сейчас показывать
-========================================================= */
 function renderView() {
   const root = byId('app');
   const meta = VIEW_META[state.activeView] || VIEW_META.home;
@@ -340,10 +282,6 @@ function renderView() {
   animateContentSwap(root, html);
 }
 
-/* =========================================================
-   12. ОБРАБОТКА КЛИКОВ ПО КАРТОЧКАМ
-   Всё, у чего есть data-view, считается переходом
-========================================================= */
 function bindClicks() {
   document.querySelectorAll('[data-view]').forEach(node => {
     node.addEventListener('click', (event) => {
@@ -357,10 +295,6 @@ function bindClicks() {
   });
 }
 
-/* =========================================================
-   13. СТАРТ ПРИЛОЖЕНИЯ
-   Запускается после загрузки страницы
-========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
   byId('brandTitle').textContent = window.APP_DATA.brand.title;
 
