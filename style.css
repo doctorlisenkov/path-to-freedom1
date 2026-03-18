@@ -546,13 +546,21 @@ details.phase[open] {
 
 /* =========================================================
    13. НЕЖИВЫЕ КАРТОЧКИ "СКОРО"
-   Они не нажимаются, не раскрываются и не оживают
+   Не кликаются, не раскрываются, бейдж в правом верхнем углу
 ========================================================= */
+
+/* Общий вид неактивной карточки */
 .phase.is-static {
   opacity: 0.45;
   cursor: default;
 }
 
+/* Шапка карточки (нужна для позиционирования бейджа) */
+.phase-static-head {
+  position: relative;
+}
+
+/* Отключаем клик и нажатие */
 .phase.is-static .phase-static-head {
   cursor: default;
 }
@@ -562,6 +570,7 @@ details.phase[open] {
   opacity: 1;
 }
 
+/* Убираем hover-эффекты */
 .phase.is-static:hover {
   transform: none;
   border-color: var(--line);
@@ -572,12 +581,22 @@ details.phase[open] {
   );
 }
 
+/* Бейдж "Скоро" — теперь как статус, а не как контент */
 .phase.is-static .phase-badge {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  font-size: 10px;
+  padding: 5px 8px;
+
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.75);
-}
+  color: rgba(180, 200, 255, 0.8);
 
+  border-radius: 999px;
+  opacity: 0.8;
+}
 /* =========================================================
    14. СПИСКИ МАТЕРИАЛОВ
 ========================================================= */
