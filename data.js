@@ -137,7 +137,7 @@ window.APP_DATA = {
     { id: 48, title: 'Семейные паттерны', link: 'https://t.me/c/3734713069/76', type: 'lecture' },
     { id: 49, title: 'Перенос негатива', link: 'https://t.me/c/3734713069/77', type: 'material' },
     { id: 50, title: 'Принятие и сочувствие', link: 'https://t.me/c/3734713069/79', type: 'podcast' },
-    { id: 51, title: 'Встреча с родителями', link: 'https://t.me/c/3734713069/80', type: 'meditation' }
+    { id: 51, title: 'Встреча с родителями', link: 'https://t.me/c/3734713069/80', type: 'meditation' },
     { id: 52, title: 'Внутренний критик', link: 'https://t.me/c/3734713069/84', type: 'podcast' },
     { id: 53, title: 'Синдром хорошего ребенка', link: 'https://t.me/c/3734713069/85', type: 'podcast' }
   ],
