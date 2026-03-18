@@ -225,14 +225,17 @@ p {
    7. ВЕРХНИЙ БЛОК С ЗАГОЛОВКОМ СТРАНИЦЫ
 ========================================================= */
 .page-hero {
-  padding: 8px 2px 10px;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;   /* центр по горизонтали */
+  align-items: center;       /* центр по вертикали */
+  text-align: center;        /* текст по центру */
+  padding: 40px 20px;
 }
 
 .hero-copy {
-  max-width: 520px;
+  max-width: 520px;          /* чтобы не растягивался */
+  margin: 0 auto;
 }
-
 h1 {
   font-size: clamp(24px, 4.8vw, 40px);
   line-height: 1.02;
