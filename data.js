@@ -72,7 +72,7 @@ window.APP_DATA = {
       title: 'Этап 4. Семья и родительские фигуры',
       description: 'Семейные сценарии и внутренние роли.',
       status: 'available',
-      items: [47,48,49,50,51]
+      items: [47,48,49,50,51,52,53]
     },
 
     { id: 'phase-5', title: 'Этап 5. Роли и сценарии', description: 'Паттерны поведения и треугольник Карпмана.', status: 'planned' },
@@ -138,6 +138,8 @@ window.APP_DATA = {
     { id: 49, title: 'Перенос негатива', link: 'https://t.me/c/3734713069/77', type: 'material' },
     { id: 50, title: 'Принятие и сочувствие', link: 'https://t.me/c/3734713069/79', type: 'podcast' },
     { id: 51, title: 'Встреча с родителями', link: 'https://t.me/c/3734713069/80', type: 'meditation' }
+    { id: 52, title: 'Внутренний критик', link: 'https://t.me/c/3734713069/84', type: 'podcast' },
+    { id: 53, title: 'Синдром хорошего ребенка', link: 'https://t.me/c/3734713069/85', type: 'podcast' }
   ],
 
   curated: {
