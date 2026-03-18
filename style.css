@@ -1,38 +1,47 @@
 /* =========================================================
-   1. ОСНОВНЫЕ ПЕРЕМЕННЫЕ ТЕМЫ
-   Тут хранятся главные цвета, радиусы, тени, ширина контейнера
+   1. ПЕРЕМЕННЫЕ ТЕМЫ
+   Здесь хранится вся визуальная система:
+   фон, текст, линии, тени, радиусы, ширина контейнера
 ========================================================= */
 :root {
   color-scheme: dark;
 
-  --bg: #0f1117;                  /* основной фон */
-  --bg-2: #0a0c11;               /* более глубокий фон */
+  /* БАЗОВЫЙ ФОН */
+  --bg: #0f1117;
+  --bg-2: #0a0c11;
 
-  --surface: rgba(255, 255, 255, 0.06);         /* базовая стеклянная поверхность */
-  --surface-strong: rgba(255, 255, 255, 0.10);  /* усиленная поверхность */
+  /* СТЕКЛЯННЫЕ ПОВЕРХНОСТИ */
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(255, 255, 255, 0.10);
 
-  --text: rgba(255, 255, 255, 0.96);            /* основной текст */
-  --muted: rgba(255, 255, 255, 0.62);           /* вторичный текст */
+  /* ТЕКСТ */
+  --text: rgba(255, 255, 255, 0.96);
+  --muted: rgba(255, 255, 255, 0.62);
 
-  --line: rgba(255, 255, 255, 0.10);            /* обычная граница */
-  --line-strong: rgba(255, 255, 255, 0.18);     /* усиленная граница */
+  /* ЛИНИИ / ГРАНИЦЫ */
+  --line: rgba(255, 255, 255, 0.10);
+  --line-strong: rgba(255, 255, 255, 0.18);
 
-  --icon: rgba(220, 225, 255, 0.84);            /* цвет иконок */
-  --glow: rgba(140, 150, 255, 0.16);            /* мягкое свечение */
+  /* ИКОНКИ / СВЕЧЕНИЕ */
+  --icon: rgba(220, 225, 255, 0.84);
+  --glow: rgba(140, 150, 255, 0.16);
 
-  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);   /* мягкая тень */
-  --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.45); /* сильная тень */
+  /* ТЕНИ */
+  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.45);
 
-  --radius-xl: 24px;   /* большой радиус */
-  --radius-lg: 22px;   /* средне-большой радиус */
-  --radius-md: 16px;   /* стандартный радиус */
+  /* СКРУГЛЕНИЯ */
+  --radius-xl: 24px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
 
-  --container: 1180px; /* максимальная ширина контента */
+  /* ШИРИНА КОНТЕНТНОЙ ОБЛАСТИ */
+  --container: 1180px;
 }
 
 /* =========================================================
-   2. БАЗОВЫЙ СБРОС
-   Общие технические настройки для всех элементов
+   2. БАЗОВЫЙ RESET
+   Техническая чистка стандартных браузерных стилей
 ========================================================= */
 * {
   box-sizing: border-box;
@@ -50,6 +59,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
   color: var(--text);
   background-color: #0a0c11;
+
+  /* ВАЖНО:
+     Здесь живёт весь твой фон с градиентами.
+     ЭТО НЕ НУЖНО ПЕРЕБИВАТЬ КЛАССАМИ ТЕМЫ. */
   background-image:
     radial-gradient(circle at 18% 0%, rgba(120, 130, 160, 0.14), transparent 34%),
     radial-gradient(circle at 82% 0%, rgba(120, 130, 160, 0.11), transparent 34%),
@@ -59,7 +72,7 @@ body {
 
 /* =========================================================
    3. ФОНОВЫЕ СВЕТЯЩИЕСЯ ПЯТНА
-   Создают глубину, "воздух" и ощущение дорогого интерфейса
+   Даёт глубину и ощущение воздуха
 ========================================================= */
 body::before,
 body::after {
@@ -106,12 +119,13 @@ body::after {
   animation: breathe 20s ease-in-out infinite;
 }
 
-/* Дыхание световых пятен */
+/* Плавное "дыхание" фоновых пятен */
 @keyframes breathe {
   0%, 100% {
     transform: scale(1);
     opacity: 0.48;
   }
+
   50% {
     transform: scale(1.08);
     opacity: 0.62;
@@ -119,8 +133,7 @@ body::after {
 }
 
 /* =========================================================
-   4. БАЗОВЫЕ ЭЛЕМЕНТЫ
-   Ссылки, кнопки, заголовки
+   4. БАЗОВЫЕ HTML-ЭЛЕМЕНТЫ
 ========================================================= */
 a {
   color: inherit;
@@ -143,6 +156,11 @@ h2,
 h3,
 p {
   margin: 0;
+}
+
+/* Класс для реально кликабельных блоков */
+.clickable {
+  cursor: pointer;
 }
 
 /* =========================================================
@@ -233,7 +251,7 @@ h1 {
 
 /* =========================================================
    8. ОБЩИЙ СТИЛЬ КАРТОЧЕК
-   Общая стеклянная поверхность для крупных блоков
+   Общая стеклянная поверхность для всех ключевых блоков
 ========================================================= */
 .hero-card,
 .mini-card,
@@ -254,7 +272,7 @@ h1 {
 
 /* =========================================================
    9. ГЛАВНАЯ БОЛЬШАЯ КАРТОЧКА
-   Главный маршрут / главный вход
+   Основной маршрут на главной странице
 ========================================================= */
 .hero-card {
   position: relative;
@@ -262,7 +280,7 @@ h1 {
   border-radius: var(--radius-xl);
   padding: 20px;
   margin-bottom: 14px;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -277,11 +295,7 @@ h1 {
   pointer-events: none;
 }
 
-/* Реакция карточек на наведение */
-.hero-card:hover,
-.mini-card:hover,
-.phase:hover,
-.clickable:hover {
+.hero-card:hover {
   transform: translateY(-2px);
   border-color: var(--line-strong);
   background: linear-gradient(
@@ -289,16 +303,14 @@ h1 {
     rgba(255, 255, 255, 0.10),
     rgba(255, 255, 255, 0.045)
   );
+  box-shadow: var(--shadow-strong);
 }
 
-/* Реакция на нажатие */
 .hero-card:active {
   transform: scale(0.985);
 }
 
-/* ВАЖНО:
-   раньше тут была стрелка справа, поэтому было space-between.
-   Теперь стрелки нет, и карточка должна собираться от левого края. */
+/* Раньше справа была стрелка, сейчас карточка собирается слева */
 .hero-card-simple {
   display: flex;
   align-items: center;
@@ -306,7 +318,7 @@ h1 {
   gap: 16px;
 }
 
-/* Эти элементы сейчас скрыты в текущей концепции */
+/* Эти элементы сейчас не используются в текущей концепции */
 .hero-kicker,
 .primary-btn,
 .roadmap-preview,
@@ -338,7 +350,7 @@ h1 {
 
 /* =========================================================
    10. ВТОРИЧНЫЕ КАРТОЧКИ НА ГЛАВНОЙ
-   Медитации, лекции, техники и т.д.
+   Медитации, лекции, практики, зависимость, материалы
 ========================================================= */
 .secondary-grid {
   display: grid;
@@ -363,6 +375,16 @@ h1 {
   text-align: center;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   -webkit-tap-highlight-color: transparent;
+}
+
+.mini-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.10),
+    rgba(255, 255, 255, 0.045)
+  );
 }
 
 .mini-card-wide {
@@ -440,20 +462,25 @@ h1 {
   border-radius: var(--radius-lg);
   overflow: hidden;
   padding-bottom: 6px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-/* Убираем стандартный маркер <details> */
+/* Только живые этапы реагируют на hover */
+.phase:not(.is-static):hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+}
+
+/* Убираем стандартный маркер details */
 .phase summary {
   list-style: none;
 }
 
-/* Убираем маркер в Safari / Chrome */
 .phase summary::-webkit-details-marker {
   display: none;
 }
 
-/* Шапка карточки этапа: на неё нажимают */
+/* Шапка карточки этапа */
 .phase summary,
 .phase-static-head {
   padding: 17px 18px;
@@ -466,9 +493,8 @@ h1 {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Отклик при нажатии */
-.phase summary:active,
-.phase-static-head:active {
+/* Нажатие на живой этап */
+.phase summary:active {
   transform: scale(0.985);
   opacity: 0.92;
 }
@@ -489,7 +515,7 @@ h1 {
   transition: transform 0.2s ease;
 }
 
-/* Бейдж справа, если нужен статус */
+/* Бейдж статуса справа */
 .phase-badge {
   flex-shrink: 0;
   align-self: center;
@@ -502,18 +528,12 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Приглушённое состояние для будущих / неактивных этапов */
-.phase-planned {
-  opacity: 0.48;
-}
-
 /* Контент внутри раскрытого этапа */
 .phase-content {
   padding: 6px 18px 18px;
 }
 
-/* Состояние раскрытого этапа:
-   это теперь визуальная замена стрелке */
+/* Раскрытый этап */
 details.phase[open] {
   border-color: var(--line-strong);
   background: linear-gradient(
@@ -521,16 +541,51 @@ details.phase[open] {
     rgba(255, 255, 255, 0.10),
     rgba(255, 255, 255, 0.05)
   );
+  box-shadow: var(--shadow-soft);
 }
 
 /* =========================================================
-   13. СПИСОК МАТЕРИАЛОВ ВНУТРИ ЭТАПА
+   13. НЕЖИВЫЕ КАРТОЧКИ "СКОРО"
+   Они не нажимаются, не раскрываются и не оживают
+========================================================= */
+.phase.is-static {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.phase.is-static .phase-static-head {
+  cursor: default;
+}
+
+.phase.is-static .phase-static-head:active {
+  transform: none;
+  opacity: 1;
+}
+
+.phase.is-static:hover {
+  transform: none;
+  border-color: var(--line);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.025)
+  );
+}
+
+.phase.is-static .phase-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* =========================================================
+   14. СПИСКИ МАТЕРИАЛОВ
 ========================================================= */
 .path-list {
   display: block;
 }
 
-/* Внутренний контейнер списка без отдельной карточки */
+/* Контейнер обычного списка */
 .list-wrap {
   padding: 0;
   border: none;
@@ -557,20 +612,25 @@ details.phase[open] {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Последнему пункту не нужна нижняя линия */
 .path-item:last-child,
 .list-item:last-child {
   border-bottom: none;
 }
 
-/* Поведение пункта списка при наведении */
+/* Hover по материалам */
 .path-item:hover,
 .list-item:hover {
   opacity: 0.75;
   transform: translateX(2px);
 }
 
-/* Заголовок материала */
+.path-item:hover .list-item-type,
+.list-item:hover .list-item-type {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* Название материала */
 .list-item-title {
   font-size: 15px;
   font-weight: 500;
@@ -579,7 +639,7 @@ details.phase[open] {
   color: rgba(255, 255, 255, 0.92);
 }
 
-/* Тип материала справа: лекция / медитация / практика */
+/* Тип материала */
 .list-item-type {
   flex-shrink: 0;
   font-size: 12px;
@@ -589,24 +649,54 @@ details.phase[open] {
   background: none;
   border: none;
   color: rgba(140, 170, 255, 0.75);
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 /* =========================================================
-   14. ТЕХНИЧЕСКИЕ КЛАССЫ ТЕМ
-   Убирают лишний фон у body-классов страниц
+   15. АНИМАЦИЯ ПОЯВЛЕНИЯ КОНТЕНТА
+   Нужна, если в JS используется app-fade / is-visible
 ========================================================= */
-.theme-home,
-.theme-path,
-.theme-meditations,
-.theme-lectures,
-.theme-practices,
-.theme-materials,
-.theme-start {
-  background: transparent !important;
+.app-fade {
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.app-fade.is-visible,
+.is-visible {
+  opacity: 1;
+}
+
+/* Небольшие служебные fade-классы */
+.fade-up {
+  animation: fadeUp 0.4s ease both;
+}
+
+.fade-1 {
+  animation-delay: 0.02s;
+}
+
+.fade-2 {
+  animation-delay: 0.06s;
+}
+
+.fade-3 {
+  animation-delay: 0.1s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =========================================================
-   15. АДАПТАЦИЯ ПОД ПЛАНШЕТЫ
+   16. АДАПТАЦИЯ ПОД ПЛАНШЕТЫ
 ========================================================= */
 @media (max-width: 900px) {
   .topbar,
@@ -622,7 +712,9 @@ details.phase[open] {
 }
 
 /* =========================================================
-   16. АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ
+   17. АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ
+   Здесь особенно важно не перебивать body background,
+   чтобы градиенты были видны и на мобильной версии
 ========================================================= */
 @media (max-width: 640px) {
   .shell {
