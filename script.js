@@ -30,7 +30,7 @@ const TYPE_LABELS = {
 const VIEW_META = {
   home: {
     title: '',
-    subtitle: 'Я очень рад, что вы здесь! Впереди чудесный мир открытия себя.',
+    subtitle: 'Впереди чудесный мир открытия себя.',
     theme: 'theme-home'
   },
   'full-path': {
