@@ -84,7 +84,6 @@ const ICONS = {
 
 practices: `
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-    
     <!-- внешний контур (зубцы) -->
     <path d="M12 3.2
              L13.4 4.2
@@ -119,13 +118,11 @@ practices: `
              L8.7 4.1
              L10.6 4.2
              Z"></path>
-
     <!-- центр -->
     <circle cx="12" cy="12" r="3"></circle>
 
-  </svg>
-`,
-`,
+  </svg>`,
+   
   addiction: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
       <path d="M9.15 14.85 7.1 16.9a2.9 2.9 0 0 1-4.1-4.1L5.95 9.85"></path>
