@@ -49,7 +49,7 @@ const VIEW_META = {
     theme: 'theme-lectures'
   },
   practices: {
-    title: 'Практики и техники',
+    title: 'Техники',
     subtitle: 'Телесные и прикладные инструменты, которые начинают работать сразу после применения.',
     theme: 'theme-practices'
   },
