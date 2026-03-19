@@ -84,26 +84,21 @@ const ICONS = {
 
 practices: `
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-    
-    <!-- внешний круг -->
-    <circle cx="12" cy="12" r="7"></circle>
-    
-    <!-- зубцы (минимальные, через вырезы ощущаются) -->
-    <path d="M12 3.5v2"></path>
-    <path d="M12 18.5v2"></path>
-    <path d="M20.5 12h-2"></path>
-    <path d="M5.5 12h-2"></path>
-    <path d="M17.3 6.7l-1.4 1.4"></path>
-    <path d="M7.1 16.9l-1.4 1.4"></path>
-    <path d="M17.3 17.3l-1.4-1.4"></path>
-    <path d="M7.1 7.1l-1.4-1.4"></path>
+    <circle cx="12" cy="12" r="2.9"></circle>
 
-    <!-- центр -->
-    <circle cx="12" cy="12" r="2.6"></circle>
+    <!-- основные оси -->
+    <path d="M12 3.2v2.4"></path>
+    <path d="M12 18.4v2.4"></path>
+    <path d="M20.8 12h-2.4"></path>
+    <path d="M5.6 12H3.2"></path>
 
-  </svg>
-`,
-   
+    <!-- диагонали (оставили только 4) -->
+    <path d="M17.9 6.1 16.3 7.7"></path>
+    <path d="M7.7 16.3 6.1 17.9"></path>
+    <path d="M17.9 17.9 16.3 16.3"></path>
+    <path d="M7.7 7.7 6.1 6.1"></path>
+  </svg>,
+  
   addiction: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
       <path d="M9.15 14.85 7.1 16.9a2.9 2.9 0 0 1-4.1-4.1L5.95 9.85"></path>
