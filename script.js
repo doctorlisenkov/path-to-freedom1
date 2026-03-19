@@ -72,41 +72,46 @@ const VIEW_META = {
 ========================================================= */
 const ICONS = {
   meditations: `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="8"></circle>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <circle cx="12" cy="12" r="7.6"></circle>
     </svg>`,
 
   lectures: `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M4.5 6.5C4.5 5.67 5.17 5 6 5H10.8C11.67 5 12.5 5.35 13 6C13.5 5.35 14.33 5 15.2 5H20V18.5H15.2C14.25 18.5 13.39 18.84 12.72 19.46L12.5 19.67L12.28 19.46C11.61 18.84 10.75 18.5 9.8 18.5H4.5V6.5Z"></path>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path d="M4.8 6.2c0-.66.54-1.2 1.2-1.2H9.8c1.05 0 2.04.33 2.88.96L13 6.2l.32-.24A4.78 4.78 0 0 1 16.2 5H20c.66 0 1.2.54 1.2 1.2v11.9c0 .5-.4.9-.9.9h-4.1c-1.02 0-2 .3-2.82.88l-.38.26-.38-.26A4.84 4.84 0 0 0 9.8 19H5.7a.9.9 0 0 1-.9-.9V6.2Z"></path>
+      <path d="M12.98 6.15V19.6"></path>
     </svg>`,
 
   practices: `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="3.2"></circle>
-      <path d="M12 2.8V5"></path>
-      <path d="M12 19V21.2"></path>
-      <path d="M21.2 12H19"></path>
-      <path d="M5 12H2.8"></path>
-      <path d="M18.5 5.5L16.9 7.1"></path>
-      <path d="M7.1 16.9L5.5 18.5"></path>
-      <path d="M18.5 18.5L16.9 16.9"></path>
-      <path d="M7.1 7.1L5.5 5.5"></path>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.95"></circle>
+      <path d="M12 2.9v2.35"></path>
+      <path d="M12 18.75v2.35"></path>
+      <path d="M21.1 12h-2.35"></path>
+      <path d="M5.25 12H2.9"></path>
+      <path d="M18.44 5.56 16.78 7.22"></path>
+      <path d="M7.22 16.78 5.56 18.44"></path>
+      <path d="M18.44 18.44 16.78 16.78"></path>
+      <path d="M7.22 7.22 5.56 5.56"></path>
+      <path d="M12 5.7a6.3 6.3 0 0 1 2.54.53"></path>
+      <path d="M18.3 12a6.3 6.3 0 0 1-.53 2.54"></path>
+      <path d="M12 18.3a6.3 6.3 0 0 1-2.54-.53"></path>
+      <path d="M5.7 12a6.3 6.3 0 0 1 .53-2.54"></path>
     </svg>`,
 
   addiction: `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M10.2 13.8L7.8 16.2C6.47 17.53 4.33 17.53 3 16.2C1.67 14.87 1.67 12.73 3 11.4L6.4 8"></path>
-      <path d="M13.8 10.2L16.2 7.8C17.53 6.47 19.67 6.47 21 7.8C22.33 9.13 22.33 11.27 21 12.6L17.6 16"></path>
-      <path d="M9 15L15 9"></path>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path d="M9.15 14.85 7.1 16.9a2.9 2.9 0 0 1-4.1-4.1L5.95 9.85"></path>
+      <path d="M14.85 9.15 16.9 7.1a2.9 2.9 0 0 1 4.1 4.1l-2.95 2.95"></path>
+      <path d="M9.35 14.65 14.65 9.35"></path>
     </svg>`,
 
   materials: `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M7 4.5H13.8L17.5 8.2V19.2C17.5 20.19 16.69 21 15.7 21H8.3C7.31 21 6.5 20.19 6.5 19.2V5.8C6.5 4.81 7.31 4 8.3 4H7Z"></path>
-      <path d="M13.5 4.5V8.5H17.5"></path>
-      <path d="M9 12H15"></path>
-      <path d="M9 15H13.5"></path>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path d="M7.1 3.9h6.35l3.45 3.45v12.75a1 1 0 0 1-1 1H7.1a1 1 0 0 1-1-1V4.9a1 1 0 0 1 1-1Z"></path>
+      <path d="M13.45 3.9v3.55h3.45"></path>
+      <path d="M9.1 12.15h5.8"></path>
+      <path d="M9.1 15.2h5.8"></path>
     </svg>`
 };
 
