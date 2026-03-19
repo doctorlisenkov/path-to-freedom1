@@ -97,7 +97,7 @@ practices: `
     <path d="M7.7 16.3 6.1 17.9"></path>
     <path d="M17.9 17.9 16.3 16.3"></path>
     <path d="M7.7 7.7 6.1 6.1"></path>
-  </svg>,
+  </svg>`,
   
   addiction: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
