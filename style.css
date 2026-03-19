@@ -398,14 +398,13 @@ p {
 }
 
 .mini-icon {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(230, 235, 255, 0.56);
-  filter: drop-shadow(0 0 10px rgba(170, 185, 255, 0.08));
-  opacity: 0.92;
+  color: rgba(232, 236, 248, 0.72);
+  filter: drop-shadow(0 0 12px rgba(180, 190, 255, 0.08));
 }
 
 .mini-icon svg {
@@ -415,7 +414,9 @@ p {
 }
 
 .mini-icon svg * {
-  stroke-width: 1.6;
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 .mini-title {
