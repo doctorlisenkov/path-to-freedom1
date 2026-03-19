@@ -82,23 +82,23 @@ const ICONS = {
       <path d="M12.98 6.15V19.6"></path>
     </svg>`,
 
-  practices: `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-      <circle cx="12" cy="12" r="2.95"></circle>
-      <path d="M12 2.9v2.35"></path>
-      <path d="M12 18.75v2.35"></path>
-      <path d="M21.1 12h-2.35"></path>
-      <path d="M5.25 12H2.9"></path>
-      <path d="M18.44 5.56 16.78 7.22"></path>
-      <path d="M7.22 16.78 5.56 18.44"></path>
-      <path d="M18.44 18.44 16.78 16.78"></path>
-      <path d="M7.22 7.22 5.56 5.56"></path>
-      <path d="M12 5.7a6.3 6.3 0 0 1 2.54.53"></path>
-      <path d="M18.3 12a6.3 6.3 0 0 1-.53 2.54"></path>
-      <path d="M12 18.3a6.3 6.3 0 0 1-2.54-.53"></path>
-      <path d="M5.7 12a6.3 6.3 0 0 1 .53-2.54"></path>
-    </svg>`,
+ practices: `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+    <circle cx="12" cy="12" r="2.9"></circle>
 
+    <!-- основные оси -->
+    <path d="M12 3.2v2.4"></path>
+    <path d="M12 18.4v2.4"></path>
+    <path d="M20.8 12h-2.4"></path>
+    <path d="M5.6 12H3.2"></path>
+
+    <!-- диагонали (оставили только 4) -->
+    <path d="M17.9 6.1 16.3 7.7"></path>
+    <path d="M7.7 16.3 6.1 17.9"></path>
+    <path d="M17.9 17.9 16.3 16.3"></path>
+    <path d="M7.7 7.7 6.1 6.1"></path>
+  </svg>
+`,
   addiction: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
       <path d="M9.15 14.85 7.1 16.9a2.9 2.9 0 0 1-4.1-4.1L5.95 9.85"></path>
