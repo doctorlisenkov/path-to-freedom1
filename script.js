@@ -30,8 +30,7 @@ const TYPE_LABELS = {
 const VIEW_META = {
   home: {
     title: '',
-    subtitle: `У каждого свой путь.<br>
-Не торопись и проходи в комфортном темпе.`,
+    subtitle: `Впереди — открытие себя.`,
     theme: 'theme-home'
   },
   'full-path': {
