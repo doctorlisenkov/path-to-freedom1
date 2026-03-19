@@ -86,44 +86,25 @@ const ICONS = {
 
 practices: `
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-    <!-- внешний контур (зубцы) -->
-    <path d="M12 3.2
-             L13.4 4.2
-             L15.3 4.1
-             L16.2 5.6
-             L18 6.2
-             L18.1 8
-             L19.6 9.2
-             L19 11
-             L20 12.5
-             L19 14
-             L19.6 15.8
-             L18.1 17
-             L18 18.8
-             L16.2 19.4
-             L15.3 20.9
-             L13.4 20.8
-             L12 21.8
-             L10.6 20.8
-             L8.7 20.9
-             L7.8 19.4
-             L6 18.8
-             L5.9 17
-             L4.4 15.8
-             L5 14
-             L4 12.5
-             L5 11
-             L4.4 9.2
-             L5.9 8
-             L6 6.2
-             L7.8 5.6
-             L8.7 4.1
-             L10.6 4.2
-             Z"></path>
-    <!-- центр -->
-    <circle cx="12" cy="12" r="3"></circle>
+    
+    <!-- внешний круг -->
+    <circle cx="12" cy="12" r="7"></circle>
+    
+    <!-- зубцы (минимальные, через вырезы ощущаются) -->
+    <path d="M12 3.5v2"></path>
+    <path d="M12 18.5v2"></path>
+    <path d="M20.5 12h-2"></path>
+    <path d="M5.5 12h-2"></path>
+    <path d="M17.3 6.7l-1.4 1.4"></path>
+    <path d="M7.1 16.9l-1.4 1.4"></path>
+    <path d="M17.3 17.3l-1.4-1.4"></path>
+    <path d="M7.1 7.1l-1.4-1.4"></path>
 
-  </svg>`,
+    <!-- центр -->
+    <circle cx="12" cy="12" r="2.6"></circle>
+
+  </svg>
+`,
    
   addiction: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
