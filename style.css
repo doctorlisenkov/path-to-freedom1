@@ -367,14 +367,14 @@ p {
 }
 
 .mini-card {
-  min-height: 124px;
-  border-radius: var(--radius-lg);
-  padding: 16px 14px;
+  min-height: 112px;
+  border-radius: 20px;
+  padding: 14px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   text-align: center;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   -webkit-tap-highlight-color: transparent;
@@ -391,28 +391,33 @@ p {
 }
 
 .mini-card-wide {
-  min-height: 94px;
+  min-height: 86px;
   flex-direction: row;
   justify-content: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .mini-icon {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--icon);
-  filter: drop-shadow(0 2px 8px var(--glow));
+  color: rgba(230, 235, 255, 0.56);
+  filter: drop-shadow(0 0 10px rgba(170, 185, 255, 0.08));
+  opacity: 0.92;
 }
 
 .mini-icon svg {
   width: 100%;
   height: 100%;
-  stroke-width: 1.9;
+  overflow: visible;
 }
 
+.mini-icon svg * {
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
 .mini-title {
   font-size: 16px;
   line-height: 1.18;
