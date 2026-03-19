@@ -27,7 +27,7 @@ window.APP_DATA = {
     },
     {
       id: 'practices',
-      title: 'Практики и техники',
+      title: 'Техники',
       kind: 'secondary',
       description: 'Инструменты для реальной работы с собой.'
     },
