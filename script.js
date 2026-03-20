@@ -363,13 +363,13 @@ document.addEventListener('click', (e) => {
   if (href.includes('t.me')) {
     e.preventDefault();
 
-    if (tg) {
-      tg.close();
+    if (window.Telegram && Telegram.WebApp) {
+      Telegram.WebApp.close();
     }
 
     setTimeout(() => {
       window.location.href = href;
-    }, 150);
+    }, 180);
   }
 });
 
