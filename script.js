@@ -1,3 +1,17 @@
+// === TELEGRAM MINI APP ===
+if (window.Telegram && Telegram.WebApp) {
+  const tg = Telegram.WebApp;
+
+  tg.ready();
+  tg.expand();
+
+  // Кнопка "назад" сверху
+  tg.BackButton.show();
+
+  tg.BackButton.onClick(() => {
+    tg.close(); // сворачивает mini app
+  });
+}
 /* =========================================================
    1. СОСТОЯНИЕ ПРИЛОЖЕНИЯ
    Здесь хранится, какой экран сейчас открыт
@@ -441,4 +455,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Первый рендер */
   renderView();
+});
+// Закрывать mini app при переходе по Telegram-ссылкам
+document.addEventListener("click", function (e) {
+  const link = e.target.closest("a");
+  if (!link) return;
+
+  const href = link.getAttribute("href");
+  if (!href) return;
+
+  if (href.includes("t.me")) {
+    e.preventDefault(); // ⛔ останавливаем стандартный переход
+
+    if (window.Telegram && Telegram.WebApp) {
+      Telegram.WebApp.close(); // закрываем mini app
+    }
+
+    // даём Telegram чуть время закрыться
+    setTimeout(() => {
+      window.open(href, "_blank");
+    }, 200);
+  }
 });
