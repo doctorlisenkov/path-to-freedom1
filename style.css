@@ -1,47 +1,36 @@
 /* =========================================================
    1. ПЕРЕМЕННЫЕ ТЕМЫ
-   Здесь хранится вся визуальная система:
-   фон, текст, линии, тени, радиусы, ширина контейнера
 ========================================================= */
 :root {
   color-scheme: dark;
 
-  /* БАЗОВЫЙ ФОН */
   --bg: #141922;
   --bg-2: #10141b;
 
-  /* СТЕКЛЯННЫЕ ПОВЕРХНОСТИ */
   --surface: rgba(255, 255, 255, 0.06);
   --surface-strong: rgba(255, 255, 255, 0.10);
 
-  /* ТЕКСТ */
   --text: rgba(255, 255, 255, 0.96);
   --muted: rgba(255, 255, 255, 0.72);
 
-  /* ЛИНИИ / ГРАНИЦЫ */
   --line: rgba(255, 255, 255, 0.10);
   --line-strong: rgba(255, 255, 255, 0.18);
 
-  /* ИКОНКИ / СВЕЧЕНИЕ */
   --icon: rgba(220, 225, 255, 0.84);
   --glow: rgba(140, 150, 255, 0.16);
 
-  /* ТЕНИ */
   --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);
   --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.45);
 
-  /* СКРУГЛЕНИЯ */
   --radius-xl: 24px;
   --radius-lg: 22px;
   --radius-md: 16px;
 
-  /* ШИРИНА КОНТЕНТНОЙ ОБЛАСТИ */
   --container: 1180px;
 }
 
 /* =========================================================
-   2. БАЗОВЫЙ RESET
-   Техническая чистка стандартных браузерных стилей
+   2. RESET
 ========================================================= */
 * {
   box-sizing: border-box;
@@ -59,10 +48,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
   color: var(--text);
   background-color: #0a0c11;
-
-  /* ВАЖНО:
-     Здесь живёт весь твой фон с градиентами.
-     ЭТО НЕ НУЖНО ПЕРЕБИВАТЬ КЛАССАМИ ТЕМЫ. */
   background-image:
     radial-gradient(circle at 18% 0%, rgba(120, 130, 160, 0.14), transparent 34%),
     radial-gradient(circle at 82% 0%, rgba(120, 130, 160, 0.11), transparent 34%),
@@ -71,8 +56,7 @@ body {
 }
 
 /* =========================================================
-   3. ФОНОВЫЕ СВЕТЯЩИЕСЯ ПЯТНА
-   Даёт глубину и ощущение воздуха
+   3. ФОНОВЫЕ ПЯТНА
 ========================================================= */
 body::before,
 body::after {
@@ -119,13 +103,11 @@ body::after {
   animation: breathe 20s ease-in-out infinite;
 }
 
-/* Плавное "дыхание" фоновых пятен */
 @keyframes breathe {
   0%, 100% {
     transform: scale(1);
     opacity: 0.48;
   }
-
   50% {
     transform: scale(1.08);
     opacity: 0.62;
@@ -133,7 +115,7 @@ body::after {
 }
 
 /* =========================================================
-   4. БАЗОВЫЕ HTML-ЭЛЕМЕНТЫ
+   4. БАЗОВЫЕ ЭЛЕМЕНТЫ
 ========================================================= */
 a {
   color: inherit;
@@ -158,50 +140,39 @@ p {
   margin: 0;
 }
 
-/* Класс для реально кликабельных блоков */
 .clickable {
   cursor: pointer;
 }
 
 /* =========================================================
-   5. ОСНОВНАЯ ОБЁРТКА СТРАНИЦЫ
+   5. ОСНОВНАЯ ОБЁРТКА
 ========================================================= */
 .shell {
   width: min(var(--container), calc(100vw - 18px));
   margin: 0 auto;
-  padding: 10px 0 24px;
+  padding: 8px 0 24px;
   position: relative;
   z-index: 1;
 }
 
 /* =========================================================
    6. ВЕРХНЯЯ ПАНЕЛЬ
-   Логотип + кнопка назад
 ========================================================= */
 .topbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 8px;
+  min-height: 36px;
+  margin-bottom: 2px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--text);
+.topbar-minimal {
+  justify-content: flex-end;
 }
 
+.brand,
 .brand-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #c8d7ff, #d5caff);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.26);
+  display: none;
 }
 
 .back-btn {
@@ -222,44 +193,60 @@ p {
 }
 
 /* =========================================================
-   7. ВЕРХНИЙ БЛОК С ЗАГОЛОВКОМ СТРАНИЦЫ
+   7. HERO БЛОК С ЗАГОЛОВКОМ ЭКРАНА
 ========================================================= */
 .page-hero {
   display: flex;
-  justify-content: flex-start;        /* выравнивание влево */
+  justify-content: flex-start;
   align-items: center;
-
-  padding: 24px 20px 24px;            /* больше воздуха сверху */
-  text-align: left;                   /* текст строго по левому краю */
+  padding: 10px 20px 18px;
+  text-align: left;
 }
 
-/* ТЕКСТ В HERO */
 .hero-copy {
-  max-width: 520px;                  /* ограничение ширины */
-
-  /* главный отступ слева */
-  margin-left: clamp(14px, 6vw, 80px);
+  max-width: 560px;
+  margin-left: clamp(8px, 4vw, 52px);
 }
 
-/* ЗАГОЛОВОК */
 .hero-copy h1 {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: var(--text);
 }
 
-/* ПОДЗАГОЛОВОК */
 .page-subtitle {
   opacity: 0.7;
   line-height: 1.5;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* если на главной title/subtitle пустые — блок схлопывается */
+.hero-copy h1:empty,
+.page-subtitle:empty {
+  display: none;
+}
+
+.page-hero:has(.hero-copy h1:empty):has(.page-subtitle:empty) {
+  padding-top: 0;
+  padding-bottom: 8px;
+  min-height: 0;
+}
+
+/* Fallback на случай, если :has не поддержится */
+.hero-copy:empty {
+  display: none;
 }
 
 /* =========================================================
-   8. ОБЩИЙ СТИЛЬ КАРТОЧЕК
-   Общая стеклянная поверхность для всех ключевых блоков
+   8. СТЕКЛЯННЫЕ КАРТОЧКИ
 ========================================================= */
 .hero-card,
 .mini-card,
-.phase,
-.list-wrap {
+.phase {
   border: 1px solid var(--line);
   background: linear-gradient(
     145deg,
@@ -275,7 +262,6 @@ p {
 
 /* =========================================================
    9. ГЛАВНАЯ БОЛЬШАЯ КАРТОЧКА
-   Основной маршрут на главной странице
 ========================================================= */
 .hero-card {
   position: relative;
@@ -313,7 +299,6 @@ p {
   transform: scale(0.985);
 }
 
-/* Раньше справа была стрелка, сейчас карточка собирается слева */
 .hero-card-simple {
   display: flex;
   align-items: center;
@@ -321,7 +306,6 @@ p {
   gap: 16px;
 }
 
-/* Эти элементы сейчас не используются в текущей концепции */
 .hero-kicker,
 .primary-btn,
 .roadmap-preview,
@@ -330,7 +314,8 @@ p {
 .preview-row,
 .list-check,
 .is-letter-title,
-.list-item-wrap {
+.list-item-wrap,
+.list-wrap {
   display: none !important;
 }
 
@@ -352,8 +337,7 @@ p {
 }
 
 /* =========================================================
-   10. ВТОРИЧНЫЕ КАРТОЧКИ НА ГЛАВНОЙ
-   Медитации, лекции, практики, зависимость, материалы
+   10. ВТОРИЧНЫЕ ПЛИТКИ
 ========================================================= */
 .secondary-grid {
   display: grid;
@@ -419,6 +403,7 @@ p {
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
+
 .mini-title {
   font-size: 16px;
   line-height: 1.18;
@@ -428,7 +413,7 @@ p {
 }
 
 /* =========================================================
-   11. ВВОДНЫЕ ТЕКСТЫ РАЗДЕЛОВ
+   11. ВСТУПИТЕЛЬНЫЕ ТЕКСТЫ
 ========================================================= */
 .path-intro {
   padding: 2px 2px 6px;
@@ -460,7 +445,7 @@ p {
 }
 
 /* =========================================================
-   12. СПИСОК ЭТАПОВ ПУТИ
+   12. ЭТАПЫ ПУТИ
 ========================================================= */
 .phases-stack {
   display: grid;
@@ -474,13 +459,11 @@ p {
   transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-/* Только живые этапы реагируют на hover */
 .phase:not(.is-static):hover {
   transform: translateY(-2px);
   border-color: var(--line-strong);
 }
 
-/* Убираем стандартный маркер details */
 .phase summary {
   list-style: none;
 }
@@ -489,7 +472,6 @@ p {
   display: none;
 }
 
-/* Шапка карточки этапа */
 .phase summary,
 .phase-static-head {
   padding: 17px 18px;
@@ -502,18 +484,15 @@ p {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Нажатие на живой этап */
 .phase summary:active {
   transform: scale(0.985);
   opacity: 0.92;
 }
 
-/* Лёгкое движение заголовка при наведении */
 .phase summary:hover .phase-title {
   transform: translateX(2px);
 }
 
-/* Заголовок этапа */
 .phase-title {
   font-size: 18px;
   line-height: 1.14;
@@ -524,7 +503,6 @@ p {
   transition: transform 0.2s ease;
 }
 
-/* Бейдж статуса справа */
 .phase-badge {
   flex-shrink: 0;
   align-self: center;
@@ -537,12 +515,10 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Контент внутри раскрытого этапа */
 .phase-content {
   padding: 6px 18px 18px;
 }
 
-/* Раскрытый этап */
 details.phase[open] {
   border-color: var(--line-strong);
   background: linear-gradient(
@@ -554,11 +530,8 @@ details.phase[open] {
 }
 
 /* =========================================================
-   13. НЕЖИВЫЕ КАРТОЧКИ "СКОРО"
-   Не кликаются, не раскрываются, бейдж в правом верхнем углу
+   13. НЕАКТИВНЫЕ КАРТОЧКИ "СКОРО"
 ========================================================= */
-
-/* Общий вид неактивной карточки */
 .phase.is-static {
   cursor: default;
   border-color: rgba(255, 255, 255, 0.08);
@@ -569,21 +542,17 @@ details.phase[open] {
   );
 }
 
-/* Шапка карточки: нужна для позиционирования бейджа
-   и для запаса справа, чтобы текст не лез под "Скоро" */
 .phase.is-static .phase-static-head {
   position: relative;
   cursor: default;
   padding-right: 92px;
 }
 
-/* Отключаем эффект нажатия */
 .phase.is-static .phase-static-head:active {
   transform: none;
   opacity: 1;
 }
 
-/* Убираем hover-эффекты */
 .phase.is-static:hover {
   transform: none;
   border-color: rgba(255, 255, 255, 0.08);
@@ -594,67 +563,39 @@ details.phase[open] {
   );
 }
 
-/* Приглушаем только текст, а не всю карточку */
 .phase.is-static .phase-title,
 .phase.is-static .phase-desc {
   opacity: 0.52;
 }
 
-/* Бейдж "Скоро" как статус */
 .phase.is-static .phase-badge {
   position: absolute;
   top: 14px;
   right: 16px;
-
   font-size: 10px;
   line-height: 1;
   padding: 6px 9px;
   border-radius: 999px;
-
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: rgba(190, 205, 255, 0.82);
   opacity: 1;
 }
 
-/* Бейдж "Скоро" — теперь как статус, а не как контент */
-.phase.is-static .phase-badge {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-
-  font-size: 10px;
-  padding: 5px 8px;
-
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(180, 200, 255, 0.8);
-
-  border-radius: 999px;
-  opacity: 0.8;
-}
 /* =========================================================
-   14. СПИСКИ МАТЕРИАЛОВ
+   14. ЕДИНЫЙ СТИЛЬ СПИСКОВ
 ========================================================= */
 .path-list {
   display: block;
+  width: 100%;
 }
 
-/* Контейнер обычного списка */
-.list-wrap {
-  padding: 0;
-  border: none;
-  background: none;
-  box-shadow: none;
-}
-
-/* Один пункт списка */
-.path-item,
-.list-item {
+.path-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
+  width: 100%;
   padding: 14px 0;
   margin: 0;
   background: none;
@@ -667,25 +608,20 @@ details.phase[open] {
   -webkit-tap-highlight-color: transparent;
 }
 
-.path-item:last-child,
-.list-item:last-child {
+.path-item:last-child {
   border-bottom: none;
 }
 
-/* Hover по материалам */
-.path-item:hover,
-.list-item:hover {
+.path-item:hover {
   opacity: 0.75;
   transform: translateX(2px);
 }
 
-.path-item:hover .list-item-type,
-.list-item:hover .list-item-type {
+.path-item:hover .list-item-type {
   opacity: 1;
   transform: translateX(2px);
 }
 
-/* Название материала */
 .list-item-title {
   font-size: 15px;
   font-weight: 500;
@@ -694,7 +630,6 @@ details.phase[open] {
   color: rgba(255, 255, 255, 0.92);
 }
 
-/* Тип материала */
 .list-item-type {
   flex-shrink: 0;
   font-size: 12px;
@@ -708,8 +643,7 @@ details.phase[open] {
 }
 
 /* =========================================================
-   15. АНИМАЦИЯ ПОЯВЛЕНИЯ КОНТЕНТА
-   Нужна, если в JS используется app-fade / is-visible
+   15. АНИМАЦИИ
 ========================================================= */
 .app-fade {
   opacity: 0;
@@ -721,7 +655,6 @@ details.phase[open] {
   opacity: 1;
 }
 
-/* Небольшие служебные fade-классы */
 .fade-up {
   animation: fadeUp 0.4s ease both;
 }
@@ -751,7 +684,7 @@ details.phase[open] {
 }
 
 /* =========================================================
-   16. АДАПТАЦИЯ ПОД ПЛАНШЕТЫ
+   16. ПЛАНШЕТЫ
 ========================================================= */
 @media (max-width: 900px) {
   .topbar,
@@ -767,9 +700,7 @@ details.phase[open] {
 }
 
 /* =========================================================
-   17. АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ
-   Здесь особенно важно не перебивать body background,
-   чтобы градиенты были видны и на мобильной версии
+   17. ТЕЛЕФОНЫ
 ========================================================= */
 @media (max-width: 640px) {
   .shell {
@@ -787,6 +718,15 @@ details.phase[open] {
   .phase-desc,
   .path-desc {
     font-size: 13px;
+  }
+
+  .page-hero {
+    padding: 6px 16px 14px;
+  }
+
+  .hero-copy {
+    margin-left: 0;
+    max-width: 100%;
   }
 
   .hero-card {
@@ -821,8 +761,7 @@ details.phase[open] {
     padding-right: 16px;
   }
 
-  .path-item,
-  .list-item {
+  .path-item {
     padding: 12px 0;
   }
 
