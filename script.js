@@ -158,7 +158,7 @@ function escapeHtml(value = '') {
 // =========================================================
 function listItem(item) {
   return `
-    <a class="list-item" href="${escapeHtml(item.link)}" rel="noopener noreferrer">
+    <a class="path-item" href="${escapeHtml(item.link)}" rel="noopener noreferrer">
       <span class="list-item-title">${escapeHtml(item.title)}</span>
       <span class="list-item-type">${TYPE_LABELS[item.type] || 'Материал'}</span>
     </a>
@@ -290,7 +290,7 @@ function renderCurated(viewId) {
 
   return `
     <section class="view-shell">
-      <section class="list-wrap fade-up fade-1">
+      <section class="path-list fade-up fade-1">
         ${items}
       </section>
     </section>
