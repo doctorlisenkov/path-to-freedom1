@@ -3,27 +3,6 @@
 // =========================================================
 const tg = window.Telegram?.WebApp || null;
 
-if (tg) {
-  tg.ready();
-  tg.expand();
-
-  // Показываем системную кнопку назад Telegram
-  tg.BackButton.show();
-
-  tg.BackButton.onClick(() => {
-    // Если мы не на главной — возвращаемся на главную
-    if (state.activeView !== 'home') {
-      state.activeView = 'home';
-      renderView();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    // Если уже на главной — закрываем mini app
-    tg.close();
-  });
-}
-
 // =========================================================
 // 1. СОСТОЯНИЕ ПРИЛОЖЕНИЯ
 // =========================================================
@@ -154,7 +133,7 @@ function escapeHtml(value = '') {
 }
 
 // =========================================================
-// 6. ШАБЛОНЫ ССЫЛОК
+// 6. ШАБЛОНЫ ОТДЕЛЬНЫХ ССЫЛОК
 // =========================================================
 function listItem(item) {
   return `
@@ -175,7 +154,7 @@ function pathListItem(item) {
 }
 
 // =========================================================
-// 7. КАРТОЧКИ ЭТАПОВ
+// 7. КАРТОЧКИ ЭТАПОВ ОСНОВНОГО МАРШРУТА
 // =========================================================
 function plannedPhaseCard(phase) {
   return `
@@ -207,14 +186,16 @@ function availablePhaseCard(phase) {
         </div>
       </summary>
       <div class="phase-content">
-        <div class="path-list">${items}</div>
+        <div class="path-list">
+          ${items}
+        </div>
       </div>
     </details>
   `;
 }
 
 // =========================================================
-// 8. РЕНДЕР ГЛАВНОЙ
+// 8. РЕНДЕР ГЛАВНОЙ СТРАНИЦЫ
 // =========================================================
 function renderHome() {
   const sections = window.APP_DATA.sections || [];
@@ -276,7 +257,7 @@ function renderFullPath() {
 }
 
 // =========================================================
-// 10. РЕНДЕР РАЗДЕЛОВ
+// 10. РЕНДЕР ОТДЕЛЬНЫХ РАЗДЕЛОВ
 // =========================================================
 function renderCurated(viewId) {
   const curated = window.APP_DATA.curated || {};
@@ -290,9 +271,11 @@ function renderCurated(viewId) {
 
   return `
     <section class="view-shell">
-      <section class="path-list fade-up fade-1">
-        ${items}
-      </section>
+      <div class="phase-content">
+        <div class="path-list fade-up fade-1">
+          ${items}
+        </div>
+      </div>
     </section>
   `;
 }
@@ -352,7 +335,7 @@ function renderView() {
 }
 
 // =========================================================
-// 13. КЛИКИ ПО КАРТОЧКАМ
+// 13. ПЕРЕХОДЫ ПО КАРТОЧКАМ
 // =========================================================
 function bindClicks() {
   document.querySelectorAll('[data-view]').forEach(node => {
@@ -368,7 +351,7 @@ function bindClicks() {
 }
 
 // =========================================================
-// 14. ПЕРЕХОДЫ ПО ССЫЛКАМ ВНУТРИ MINI APP
+// 14. ПЕРЕХВАТ КЛИКОВ ПО TELEGRAM-ССЫЛКАМ
 // =========================================================
 document.addEventListener('click', (e) => {
   const link = e.target.closest('a');
@@ -377,7 +360,6 @@ document.addEventListener('click', (e) => {
   const href = link.getAttribute('href');
   if (!href) return;
 
-  // Telegram-ссылки: закрываем mini app и открываем Telegram
   if (href.includes('t.me')) {
     e.preventDefault();
 
@@ -387,14 +369,7 @@ document.addEventListener('click', (e) => {
 
     setTimeout(() => {
       window.location.href = href;
-    }, 200);
-
-    return;
-  }
-
-  // Внешние ссылки на http/https: просто открываем как обычно
-  if (href.startsWith('http://') || href.startsWith('https://')) {
-    return;
+    }, 150);
   }
 });
 
@@ -402,6 +377,23 @@ document.addEventListener('click', (e) => {
 // 15. ЗАПУСК ПРИЛОЖЕНИЯ
 // =========================================================
 document.addEventListener('DOMContentLoaded', () => {
+  if (tg) {
+    tg.ready();
+    tg.expand();
+
+    tg.BackButton.show();
+
+    tg.BackButton.onClick(() => {
+      if (state.activeView !== 'home') {
+        state.activeView = 'home';
+        renderView();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        tg.close();
+      }
+    });
+  }
+
   const backBtn = byId('backBtn');
   const root = byId('app');
 
