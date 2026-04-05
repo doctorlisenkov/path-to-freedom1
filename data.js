@@ -74,15 +74,21 @@ window.APP_DATA = {
       status: 'available',
       items: [47,48,49,50,51,52,53,54,55,56,57,58,59,60,61]
     },
-
-    { id: 'phase-5', title: 'Этап 5. Роли и сценарии', description: 'Паттерны поведения и треугольник Карпмана.', status: 'planned' },
-    { id: 'phase-6', title: 'Этап 6. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
-    { id: 'phase-7', title: 'Этап 7. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
-    { id: 'phase-8', title: 'Этап 8. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
-    { id: 'phase-9', title: 'Этап 9. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
-    { id: 'phase-10', title: 'Этап 10. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
-    { id: 'phase-11', title: 'Этап 11. Кризисы', description: 'Пустота, выгорание, депрессия.', status: 'planned' },
-    { id: 'phase-12', title: 'Этап 12. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
+  {
+      id: 'phase-5',
+      title: 'Блок. Принципы взаимодействия с зависимостью',
+      description: 'Базовые моменты зависимости и принципы выхода из неё.',
+      status: 'available',
+      items: [70]
+    },
+    { id: 'phase-6', title: 'Этап 6. Роли и сценарии', description: 'Паттерны поведения и треугольник Карпмана.', status: 'planned' },
+    { id: 'phase-7', title: 'Этап 7. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
+    { id: 'phase-8', title: 'Этап 8. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
+    { id: 'phase-9', title: 'Этап 9. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
+    { id: 'phase-10', title: 'Этап 10. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
+    { id: 'phase-11', title: 'Этап 11. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
+    { id: 'phase-12', title: 'Этап 12. Кризисы', description: 'Пустота, выгорание, депрессия.', status: 'planned' },
+    { id: 'phase-13', title: 'Этап 13. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
   ],
 
   items: [
@@ -139,7 +145,7 @@ window.APP_DATA = {
     { id: 50, title: 'Принятие и сочувствие', link: 'https://t.me/c/3734713069/79', type: 'podcast' },
     { id: 51, title: 'Встреча с родителями', link: 'https://t.me/c/3734713069/80', type: 'meditation' },
     { id: 52, title: 'Внутренний критик', link: 'https://t.me/c/3734713069/84', type: 'podcast' },
-    { id: 53, title: 'Синдром хорошего ребенка', link: 'https://t.me/c/3734713069/85', type: 'podcast' }
+    { id: 53, title: 'Синдром хорошего ребенка', link: 'https://t.me/c/3734713069/85', type: 'podcast' },
     { id: 54, title: 'Запрет на самозащиту', link: 'https://t.me/c/3734713069/86', type: 'podcast' },
     { id: 55, title: 'Страх быть плохим', link: 'https://t.me/c/3734713069/91', type: 'podcast' },
     { id: 56, title: 'Страх совершить ошибку', link: 'https://t.me/c/3734713069/92', type: 'podcast' },
@@ -147,14 +153,16 @@ window.APP_DATA = {
     { id: 58, title: 'Страх проявляться (синдром самозванца)', link: 'https://t.me/c/3734713069/98', type: 'podcast' },
     { id: 59, title: 'Страх отвержения', link: 'https://t.me/c/3734713069/112', type: 'podcast' },
     { id: 60, title: 'Страх сказать нет', link: 'https://t.me/c/3734713069/113', type: 'podcast' },
-    { id: 61, title: 'Страх конфликтов', link: 'https://t.me/c/3734713069/114', type: 'podcast' }
+    { id: 61, title: 'Страх конфликтов', link: 'https://t.me/c/3734713069/114', type: 'podcast' },
+
+    { id: 70, title: 'Не вини себя за срыв', link: 'https://t.me/c/3734713069/119', type: 'podcast' }
   ],
 
   curated: {
     meditations: [13,15,19,25,33,38,39,41,46,51],
     lectures: [17,26,31,47,48],
     practices: [20,21,22,23,24],
-    addiction: [14,16,24],
+    addiction: [14,16,24,70],
     materials: [30,32,40,49]
   }
 
