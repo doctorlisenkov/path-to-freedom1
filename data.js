@@ -72,7 +72,7 @@ window.APP_DATA = {
       title: 'Этап 4. Семья и родительские фигуры',
       description: 'Семейные сценарии и внутренние роли.',
       status: 'available',
-      items: [47,48,49,50,51,52,53]
+      items: [47,48,49,50,51,52,53,54,55,56,57,58,59,60,61]
     },
 
     { id: 'phase-5', title: 'Этап 5. Роли и сценарии', description: 'Паттерны поведения и треугольник Карпмана.', status: 'planned' },
@@ -140,6 +140,14 @@ window.APP_DATA = {
     { id: 51, title: 'Встреча с родителями', link: 'https://t.me/c/3734713069/80', type: 'meditation' },
     { id: 52, title: 'Внутренний критик', link: 'https://t.me/c/3734713069/84', type: 'podcast' },
     { id: 53, title: 'Синдром хорошего ребенка', link: 'https://t.me/c/3734713069/85', type: 'podcast' }
+    { id: 54, title: 'Запрет на самозащиту', link: 'https://t.me/c/3734713069/86', type: 'podcast' },
+    { id: 55, title: 'Страх быть плохим', link: 'https://t.me/c/3734713069/91', type: 'podcast' },
+    { id: 56, title: 'Страх совершить ошибку', link: 'https://t.me/c/3734713069/92', type: 'podcast' },
+    { id: 57, title: 'Страх осуждения', link: 'https://t.me/c/3734713069/97', type: 'podcast' },
+    { id: 58, title: 'Страх проявляться (синдром самозванца)', link: 'https://t.me/c/3734713069/98', type: 'podcast' },
+    { id: 59, title: 'Страх отвержения', link: 'https://t.me/c/3734713069/112', type: 'podcast' },
+    { id: 60, title: 'Страх сказать нет', link: 'https://t.me/c/3734713069/113', type: 'podcast' },
+    { id: 61, title: 'Страх конфликтов', link: 'https://t.me/c/3734713069/114', type: 'podcast' }
   ],
 
   curated: {
