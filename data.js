@@ -72,7 +72,7 @@ window.APP_DATA = {
       title: 'Этап 4. Семья и родительские фигуры',
       description: 'Семейные сценарии и внутренние роли.',
       status: 'available',
-      items: [47,48,49,50,51,52,53,54,55,56,57,58,59,60,61]
+      items: [47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62]
     },
   {
       id: 'phase-5',
@@ -154,6 +154,7 @@ window.APP_DATA = {
     { id: 59, title: 'Страх отвержения', link: 'https://t.me/c/3734713069/112', type: 'podcast' },
     { id: 60, title: 'Страх сказать нет', link: 'https://t.me/c/3734713069/113', type: 'podcast' },
     { id: 61, title: 'Страх конфликтов', link: 'https://t.me/c/3734713069/114', type: 'podcast' },
+    { id: 62, title: 'Страх одиночества', link: 'https://t.me/c/3734713069/115', type: 'podcast' },
 
     { id: 70, title: 'Не вини себя за срыв', link: 'https://t.me/c/3734713069/119', type: 'podcast' },
     { id: 71, title: 'Химия мозга', link: 'https://t.me/c/3734713069/120', type: 'podcast' }
