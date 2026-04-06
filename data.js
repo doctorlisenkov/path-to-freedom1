@@ -157,14 +157,15 @@ window.APP_DATA = {
     { id: 62, title: 'Страх одиночества', link: 'https://t.me/c/3734713069/115', type: 'podcast' },
 
     { id: 70, title: 'Не вини себя за срыв', link: 'https://t.me/c/3734713069/119', type: 'podcast' },
-    { id: 71, title: 'Химия мозга', link: 'https://t.me/c/3734713069/120', type: 'podcast' }
+    { id: 71, title: 'Химия мозга', link: 'https://t.me/c/3734713069/120', type: 'podcast' },
+    { id: 72, title: 'Важно замедлиться! Почувствуй осознанность', link: 'https://t.me/c/3734713069/123', type: 'podcast' }
   ],
 
   curated: {
     meditations: [13,15,19,25,33,38,39,41,46,51],
     lectures: [17,26,31,47,48],
     practices: [20,21,22,23,24],
-    addiction: [14,16,24,70.71],
+    addiction: [14,16,24,70,71,72],
     materials: [30,32,40,49]
   }
 
