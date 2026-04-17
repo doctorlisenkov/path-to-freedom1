@@ -79,9 +79,15 @@ window.APP_DATA = {
       title: 'Первый месяц выхода из зависимости.',
       description: 'Базовые моменты взаимодействия с зависимостью и принципы выхода из неё.',
       status: 'available',
-      items: [70,71]
+      items: [70,71,72]
     },
-    { id: 'phase-6', title: 'Этап 5. Роли и сценарии', description: 'Паттерны поведения и треугольник Карпмана.', status: 'planned' },
+    {
+  id: 'phase-6',
+  title: 'Блок. Роли и сценарии',
+  description: 'Спасатель, жертва, внутренний абьюзер и паттерны треугольника.',
+  status: 'available',
+  items: [80, 81, 82, 83, 84, 85]
+},
     { id: 'phase-7', title: 'Этап 6. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
     { id: 'phase-8', title: 'Этап 7. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
     { id: 'phase-9', title: 'Этап 8. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
@@ -158,7 +164,14 @@ window.APP_DATA = {
 
     { id: 70, title: 'Не вини себя за срыв', link: 'https://t.me/c/3734713069/119', type: 'podcast' },
     { id: 71, title: 'Химия мозга', link: 'https://t.me/c/3734713069/120', type: 'podcast' },
-    { id: 72, title: 'Важно замедлиться! Почувствуй осознанность', link: 'https://t.me/c/3734713069/123', type: 'podcast' }
+    { id: 72, title: 'Замедлись', link: 'https://t.me/c/3734713069/123', type: 'podcast' },
+
+    { id: 80, title: 'Психология спасателя 1 часть', link: 'https://t.me/c/3734713069/126', type: 'podcast' },
+    { id: 81, title: 'Как передвигается спасатель 2 часть', link: 'https://t.me/c/3734713069/128', type: 'podcast' },
+    { id: 82, title: 'Последствия спасательства 3 часть', link: 'https://t.me/c/3734713069/129', type: 'podcast' },
+    { id: 83, title: 'Психология жертвы 1 часть', link: 'https://t.me/c/3734713069/130', type: 'podcast' },
+    { id: 84, title: 'Психология жертвы 2 часть', link: 'https://t.me/c/3734713069/131', type: 'podcast' },
+    { id: 85, title: 'Внутренний абьюзер', link: 'https://t.me/c/3734713069/132', type: 'podcast' }
   ],
 
   curated: {
