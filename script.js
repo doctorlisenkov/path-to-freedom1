@@ -351,28 +351,28 @@ function bindClicks() {
 }
 
 // =========================================================
-// 14. БЕЗОПАСНОЕ ОТКРЫТИЕ ССЫЛОК ИЗ TELEGRAM MINI APP
+// 14. АГРЕССИВНОЕ ОТКРЫТИЕ TELEGRAM-ССЫЛОК С ЗАКРЫТИЕМ MINI APP
 // =========================================================
+// Этот вариант сначала закрывает Mini App,
+// а потом открывает ссылку обычным переходом.
+// Он сильнее "убирает" приложение с экрана,
+// но на части устройств может быть менее стабильным,
+// чем openTelegramLink без закрытия.
+
 function openExternalLink(url) {
   if (!url) return;
 
   const webApp = window.Telegram?.WebApp;
   const isTelegramLink = /^(https?:\/\/)?(t\.me|telegram\.me)\//i.test(url);
 
-  function closeMiniApp() {
-    if (webApp && typeof webApp.close === 'function') {
+  if (webApp && isTelegramLink) {
+    if (typeof webApp.close === 'function') {
       webApp.close();
     }
-  }
 
-  if (webApp && isTelegramLink && typeof webApp.openTelegramLink === 'function') {
-    webApp.openTelegramLink(url);
-
-    // Закрываем не до открытия ссылки, а после.
-    // Это снижает риск старого "вылета", когда приложение закрывалось,
-    // а ссылка не успевала открыться.
-    setTimeout(closeMiniApp, 150);
-    setTimeout(closeMiniApp, 500);
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500);
 
     return;
   }
