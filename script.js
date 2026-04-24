@@ -335,29 +335,32 @@ function bindClicks() {
   });
 }
 
-// =========================================================
 // 14. ОТКРЫТИЕ TELEGRAM-ССЫЛОК
 // =========================================================
 document.addEventListener('click', (e) => {
   const link = e.target.closest('a');
   if (!link) return;
-
+ 
   const href = link.getAttribute('href');
   if (!href || !href.includes('t.me')) return;
-
+ 
   e.preventDefault();
-
+ 
   const webApp = window.Telegram?.WebApp;
-
-  if (webApp?.openTelegramLink) {
-    webApp.openTelegramLink(href);
-  } else if (webApp?.openLink) {
-    webApp.openLink(href);
+ 
+  if (webApp) {
+    // Открываем ссылку, затем закрываем Mini App —
+    // иначе он висит поверх контента
+    if (webApp.openTelegramLink) {
+      webApp.openTelegramLink(href);
+    }
+    setTimeout(() => {
+      webApp.close();
+    }, 300);
   } else {
     window.open(href, '_blank', 'noopener,noreferrer');
   }
 });
-
 // =========================================================
 // 15. ЗАПУСК ПРИЛОЖЕНИЯ
 // =========================================================
