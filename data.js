@@ -86,7 +86,7 @@ window.APP_DATA = {
   title: 'Этап 5. Роли и сценарии. Треугольник Карпмана',
   description: 'Спасатель, жертва, внутренний абьюзер.',
   status: 'available',
-  items: [80, 81, 82, 83, 84, 85]
+  items: [80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
 },
     { id: 'phase-7', title: 'Этап 6. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
     { id: 'phase-8', title: 'Этап 7. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
@@ -171,7 +171,11 @@ window.APP_DATA = {
     { id: 82, title: 'Последствия спасательства 3 часть', link: 'https://t.me/c/3734713069/129', type: 'podcast' },
     { id: 83, title: 'Психология жертвы 1 часть', link: 'https://t.me/c/3734713069/130', type: 'podcast' },
     { id: 84, title: 'Психология жертвы 2 часть', link: 'https://t.me/c/3734713069/131', type: 'podcast' },
-    { id: 85, title: 'Внутренний абьюзер', link: 'https://t.me/c/3734713069/132', type: 'podcast' }
+    { id: 85, title: 'Внутренний абьюзер', link: 'https://t.me/c/3734713069/132', type: 'podcast' },
+    { id: 86, title: 'Саморазрушение', link: 'https://t.me/c/3734713069/133', type: 'podcast' },
+    { id: 87, title: 'Выйти из спасателя', link: 'https://t.me/c/3734713069/134', type: 'podcast' },
+    { id: 88, title: 'Выйти из жертвы', link: 'https://t.me/c/3734713069/135', type: 'podcast' },
+    { id: 89, title: 'Выйти из агрессора', link: 'https://t.me/c/3734713069/136', type: 'podcast' }
   ],
 
   curated: {
