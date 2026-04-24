@@ -359,27 +359,38 @@ function openExternalLink(url) {
   const webApp = window.Telegram?.WebApp;
   const isTelegramLink = /^(https?:\/\/)?(t\.me|telegram\.me)\//i.test(url);
 
-  // Сначала отправляем Telegram команду открыть ссылку,
+  function closeMiniApp() {
+    if (webApp && typeof webApp.close === 'function') {
+      webApp.close();
+    }
+  }
+
+  // Telegram-ссылки открываем через Telegram API.
+  // Сначала даём Telegram команду открыть пост,
   // потом сразу закрываем Mini App.
-  // Это стабильнее, чем закрывать приложение ДО открытия ссылки.
+  // Дополнительные close через таймеры — страховка для разных устройств.
   if (webApp && isTelegramLink && typeof webApp.openTelegramLink === 'function') {
     webApp.openTelegramLink(url);
 
-    if (typeof webApp.close === 'function') {
-      webApp.close();
-    }
+    closeMiniApp();
+
+    setTimeout(closeMiniApp, 50);
+    setTimeout(closeMiniApp, 150);
+    setTimeout(closeMiniApp, 300);
 
     return;
   }
 
+  // Обычные внешние ссылки открываем через Telegram WebApp API.
   if (webApp && typeof webApp.openLink === 'function') {
     webApp.openLink(url);
+
     return;
   }
 
+  // Запасной вариант, если сайт открыт не внутри Telegram.
   window.open(url, '_blank', 'noopener,noreferrer');
 }
-
 // =========================================================
 // 15. ЗАПУСК ПРИЛОЖЕНИЯ
 // =========================================================
