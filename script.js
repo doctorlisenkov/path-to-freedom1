@@ -387,22 +387,25 @@ function openExternalLink(url) {
 // =========================================================
 // 15. ЗАПУСК ПРИЛОЖЕНИЯ
 // =========================================================
-document.addEventListener('DOMContentLoaded', () => {
-  if (tg) {
-    tg.ready();
-    tg.expand();
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a');
+  if (!link) return;
 
-    tg.BackButton.show();
+  const href = link.getAttribute('href');
+  if (!href || !href.includes('t.me')) return;
 
-    tg.BackButton.onClick(() => {
-      if (state.activeView !== 'home') {
-        state.activeView = 'home';
-        renderView();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        tg.close();
-      }
-    });
+  e.preventDefault();
+
+  // Используем официальный метод Telegram для открытия ссылок
+  if (window.Telegram?.WebApp?.openTelegramLink) {
+    Telegram.WebApp.openTelegramLink(href);
+  } else if (window.Telegram?.WebApp?.openLink) {
+    Telegram.WebApp.openLink(href);
+  } else {
+    // Fallback для браузера без WebApp
+    window.open(href, '_blank');
+  }
+});
   }
 
   const backBtn = byId('backBtn');
