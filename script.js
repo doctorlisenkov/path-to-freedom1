@@ -365,30 +365,23 @@ function openExternalLink(url) {
     }
   }
 
-  // Telegram-ссылки открываем через Telegram API.
-  // Сначала даём Telegram команду открыть пост,
-  // потом сразу закрываем Mini App.
-  // Дополнительные close через таймеры — страховка для разных устройств.
   if (webApp && isTelegramLink && typeof webApp.openTelegramLink === 'function') {
     webApp.openTelegramLink(url);
 
-    closeMiniApp();
-
-    setTimeout(closeMiniApp, 50);
+    // Закрываем не до открытия ссылки, а после.
+    // Это снижает риск старого "вылета", когда приложение закрывалось,
+    // а ссылка не успевала открыться.
     setTimeout(closeMiniApp, 150);
-    setTimeout(closeMiniApp, 300);
+    setTimeout(closeMiniApp, 500);
 
     return;
   }
 
-  // Обычные внешние ссылки открываем через Telegram WebApp API.
   if (webApp && typeof webApp.openLink === 'function') {
     webApp.openLink(url);
-
     return;
   }
 
-  // Запасной вариант, если сайт открыт не внутри Telegram.
   window.open(url, '_blank', 'noopener,noreferrer');
 }
 // =========================================================
