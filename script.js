@@ -359,17 +359,15 @@ function openExternalLink(url) {
   const webApp = window.Telegram?.WebApp;
   const isTelegramLink = /^(https?:\/\/)?(t\.me|telegram\.me)\//i.test(url);
 
-  // Важно: сначала открываем ссылку через Telegram,
-  // и только потом закрываем Mini App с небольшой задержкой.
-  // Так приложение не закрывается раньше времени и не выглядит как "вылет".
+  // Сначала отправляем Telegram команду открыть ссылку,
+  // потом сразу закрываем Mini App.
+  // Это стабильнее, чем закрывать приложение ДО открытия ссылки.
   if (webApp && isTelegramLink && typeof webApp.openTelegramLink === 'function') {
     webApp.openTelegramLink(url);
 
-    setTimeout(() => {
-      if (typeof webApp.close === 'function') {
-        webApp.close();
-      }
-    }, 500);
+    if (typeof webApp.close === 'function') {
+      webApp.close();
+    }
 
     return;
   }
@@ -381,6 +379,7 @@ function openExternalLink(url) {
 
   window.open(url, '_blank', 'noopener,noreferrer');
 }
+
 // =========================================================
 // 15. ЗАПУСК ПРИЛОЖЕНИЯ
 // =========================================================
