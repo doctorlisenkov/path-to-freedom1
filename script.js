@@ -113,15 +113,9 @@ function byId(id) {
   return document.getElementById(id);
 }
 
-function itemMap() {
-  const map = new Map();
-  (window.APP_DATA.items || []).forEach(item => {
-    map.set(item.id, item);
-  });
-  return map;
-}
-
-const ITEMS = itemMap();
+const ITEMS = new Map(
+  (window.APP_DATA?.items || []).map(item => [item.id, item])
+);
 
 function escapeHtml(value = '') {
   return String(value)
@@ -136,15 +130,6 @@ function escapeHtml(value = '') {
 // 6. ШАБЛОНЫ ОТДЕЛЬНЫХ ССЫЛОК
 // =========================================================
 function listItem(item) {
-  return `
-    <a class="path-item" href="${escapeHtml(item.link)}" rel="noopener noreferrer">
-      <span class="list-item-title">${escapeHtml(item.title)}</span>
-      <span class="list-item-type">${TYPE_LABELS[item.type] || 'Материал'}</span>
-    </a>
-  `;
-}
-
-function pathListItem(item) {
   return `
     <a class="path-item" href="${escapeHtml(item.link)}" rel="noopener noreferrer">
       <span class="list-item-title">${escapeHtml(item.title)}</span>
@@ -174,7 +159,7 @@ function availablePhaseCard(phase) {
   const items = (phase.items || [])
     .map(id => ITEMS.get(id))
     .filter(Boolean)
-    .map(pathListItem)
+    .map(listItem)
     .join('');
 
   return `
@@ -351,41 +336,7 @@ function bindClicks() {
 }
 
 // =========================================================
-// 14. АГРЕССИВНОЕ ОТКРЫТИЕ TELEGRAM-ССЫЛОК С ЗАКРЫТИЕМ MINI APP
-// =========================================================
-// Этот вариант сначала закрывает Mini App,
-// а потом открывает ссылку обычным переходом.
-// Он сильнее "убирает" приложение с экрана,
-// но на части устройств может быть менее стабильным,
-// чем openTelegramLink без закрытия.
-
-function openExternalLink(url) {
-  if (!url) return;
-
-  const webApp = window.Telegram?.WebApp;
-  const isTelegramLink = /^(https?:\/\/)?(t\.me|telegram\.me)\//i.test(url);
-
-  if (webApp && isTelegramLink) {
-    if (typeof webApp.close === 'function') {
-      webApp.close();
-    }
-
-    setTimeout(() => {
-      window.location.href = url;
-    }, 500);
-
-    return;
-  }
-
-  if (webApp && typeof webApp.openLink === 'function') {
-    webApp.openLink(url);
-    return;
-  }
-
-  window.open(url, '_blank', 'noopener,noreferrer');
-}
-// =========================================================
-// 15. ЗАПУСК ПРИЛОЖЕНИЯ
+// 14. ОТКРЫТИЕ TELEGRAM-ССЫЛОК
 // =========================================================
 document.addEventListener('click', (e) => {
   const link = e.target.closest('a');
@@ -396,16 +347,36 @@ document.addEventListener('click', (e) => {
 
   e.preventDefault();
 
-  // Используем официальный метод Telegram для открытия ссылок
-  if (window.Telegram?.WebApp?.openTelegramLink) {
-    Telegram.WebApp.openTelegramLink(href);
-  } else if (window.Telegram?.WebApp?.openLink) {
-    Telegram.WebApp.openLink(href);
+  const webApp = window.Telegram?.WebApp;
+
+  if (webApp?.openTelegramLink) {
+    webApp.openTelegramLink(href);
+  } else if (webApp?.openLink) {
+    webApp.openLink(href);
   } else {
-    // Fallback для браузера без WebApp
-    window.open(href, '_blank');
+    window.open(href, '_blank', 'noopener,noreferrer');
   }
 });
+
+// =========================================================
+// 15. ЗАПУСК ПРИЛОЖЕНИЯ
+// =========================================================
+document.addEventListener('DOMContentLoaded', () => {
+  if (tg) {
+    tg.ready();
+    tg.expand();
+
+    tg.BackButton.show();
+
+    tg.BackButton.onClick(() => {
+      if (state.activeView !== 'home') {
+        state.activeView = 'home';
+        renderView();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        tg.close();
+      }
+    });
   }
 
   const backBtn = byId('backBtn');
