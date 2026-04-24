@@ -351,8 +351,29 @@ function bindClicks() {
 }
 
 // =========================================================
-// 14. ПЕРЕХВАТ КЛИКОВ ПО TELEGRAM-ССЫЛКАМ
+// 14. БЕЗОПАСНОЕ ОТКРЫТИЕ ССЫЛОК ИЗ TELEGRAM MINI APP
 // =========================================================
+function openExternalLink(url) {
+  if (!url) return;
+
+  const webApp = window.Telegram?.WebApp;
+  const isTelegramLink = /^(https?:\/\/)?(t\.me|telegram\.me)\//i.test(url);
+
+  // Важно: Mini App нельзя закрывать перед открытием ссылки.
+  // На части устройств это воспринимается как вылет приложения.
+  if (webApp && isTelegramLink && typeof webApp.openTelegramLink === 'function') {
+    webApp.openTelegramLink(url);
+    return;
+  }
+
+  if (webApp && typeof webApp.openLink === 'function') {
+    webApp.openLink(url);
+    return;
+  }
+
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
 document.addEventListener('click', (e) => {
   const link = e.target.closest('a');
   if (!link) return;
@@ -360,19 +381,12 @@ document.addEventListener('click', (e) => {
   const href = link.getAttribute('href');
   if (!href) return;
 
-  if (href.includes('t.me')) {
-    e.preventDefault();
+  const isExternal = href.startsWith('http://') || href.startsWith('https://');
+  if (!isExternal) return;
 
-    if (window.Telegram && Telegram.WebApp) {
-      Telegram.WebApp.close();
-    }
-
-    setTimeout(() => {
-      window.location.href = href;
-    }, 180);
-  }
+  e.preventDefault();
+  openExternalLink(href);
 });
-
 // =========================================================
 // 15. ЗАПУСК ПРИЛОЖЕНИЯ
 // =========================================================
