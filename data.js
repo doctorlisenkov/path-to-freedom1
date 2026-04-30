@@ -88,12 +88,18 @@ window.APP_DATA = {
   status: 'available',
   items: [80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
 },
-    { id: 'phase-7', title: 'Этап 6. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
-    { id: 'phase-8', title: 'Этап 7. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
-    { id: 'phase-9', title: 'Этап 8. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
-    { id: 'phase-10', title: 'Этап 9. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
-    { id: 'phase-11', title: 'Этап 10. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
-    { id: 'phase-12', title: 'Этап 11. Кризисы', description: 'Пустота, выгорание, депрессия.', status: 'planned' },
+        {
+  id: 'phase-7',
+  title: 'Этап 6. Кризисы. Переломный момент',
+  description: 'Пустота, выгорание, депрессия.',
+  status: 'available',
+  items: [91, 92, 93, 94]
+},
+    { id: 'phase-8', title: 'Этап 6. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
+    { id: 'phase-9', title: 'Этап 7. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
+    { id: 'phase-10', title: 'Этап 8. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
+    { id: 'phase-11', title: 'Этап 9. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
+    { id: 'phase-12', title: 'Этап 10. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
     { id: 'phase-13', title: 'Этап 12. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
   ],
 
@@ -175,7 +181,12 @@ window.APP_DATA = {
     { id: 86, title: 'Саморазрушение', link: 'https://t.me/c/3734713069/133', type: 'podcast' },
     { id: 87, title: 'Выйти из спасателя', link: 'https://t.me/c/3734713069/134', type: 'podcast' },
     { id: 88, title: 'Выйти из жертвы', link: 'https://t.me/c/3734713069/135', type: 'podcast' },
-    { id: 89, title: 'Выйти из агрессора', link: 'https://t.me/c/3734713069/136', type: 'podcast' }
+    { id: 89, title: 'Выйти из агрессора', link: 'https://t.me/c/3734713069/136', type: 'podcast' },
+
+    { id: 91, title: 'Как проходить своё дно', link: 'https://t.me/c/3734713069/138', type: 'podcast' },
+    { id: 92, title: 'Обнуление', link: 'https://t.me/c/3734713069/139', type: 'podcast' },
+    { id: 93, title: 'Как увидеть себя', link: 'https://t.me/c/3734713069/140', type: 'podcast' },
+    { id: 94, title: 'Депрессия изнутри', link: 'https://t.me/c/3734713069/141', type: 'podcast' }
   ],
 
   curated: {
