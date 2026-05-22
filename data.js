@@ -93,14 +93,28 @@ window.APP_DATA = {
   title: 'Этап 6. Кризисы. Переломный момент',
   description: 'Пустота, выгорание, депрессия.',
   status: 'available',
-  items: [91, 92, 93, 94]
+  items: [91, 92, 93, 94, 95]
 },
-    { id: 'phase-8', title: 'Этап 6. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
-    { id: 'phase-9', title: 'Этап 7. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
-    { id: 'phase-10', title: 'Этап 8. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
-    { id: 'phase-11', title: 'Этап 9. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
-    { id: 'phase-12', title: 'Этап 10. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
-    { id: 'phase-13', title: 'Этап 12. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
+    {
+  id: 'phase-8',
+  title: 'Этап 7. Кто я / Самость',
+  description: 'Осознанность и взгляд на себя изнутри.',
+  status: 'available',
+  items: [100, 101, 102, 103, 104, 105, 106, 107]
+},
+{
+  id: 'phase-8c',
+  title: 'Этап 8. Кто я / Виды идентичностей',
+  description: 'Авторство своей жизни и выход из чужих сценариев.',
+  status: 'available',
+  items: [108, 109, 110, 111]
+},
+    { id: 'phase-9', title: 'Этап 9. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
+    { id: 'phase-10', title: 'Этап 10. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
+    { id: 'phase-11', title: 'Этап 11. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
+    { id: 'phase-12', title: 'Этап 12. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
+    { id: 'phase-13', title: 'Этап 13. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
+    { id: 'phase-14', title: 'Этап 14. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
   ],
 
   items: [
@@ -186,13 +200,29 @@ window.APP_DATA = {
     { id: 91, title: 'Как проходить своё дно', link: 'https://t.me/c/3734713069/138', type: 'podcast' },
     { id: 92, title: 'Обнуление', link: 'https://t.me/c/3734713069/139', type: 'podcast' },
     { id: 93, title: 'Как увидеть себя', link: 'https://t.me/c/3734713069/140', type: 'podcast' },
-    { id: 94, title: 'Депрессия изнутри', link: 'https://t.me/c/3734713069/141', type: 'podcast' }
+    { id: 94, title: 'Депрессия изнутри', link: 'https://t.me/c/3734713069/141', type: 'podcast' },
+    { id: 95, title: 'Как вставать после падения', link: 'https://t.me/c/3734713069/142', type: 'podcast' },
+    
+    { id: 100, title: 'Красный уровень', link: 'https://t.me/c/3734713069/146', type: 'lecture' },
+    { id: 101, title: 'Наша идентичность', link: 'https://t.me/c/3734713069/147', type: 'podcast' },
+    { id: 102, title: 'Остановись и посмотри на себя', link: 'https://t.me/c/3734713069/148', type: 'podcast' },
+    { id: 103, title: 'Техника субъективный зазор', link: 'https://t.me/c/3734713069/149', type: 'practice' },
+    { id: 104, title: 'Как ты мыслишь?', link: 'https://t.me/c/3734713069/150', type: 'podcast' },
+    { id: 105, title: 'Майндфулнес', link: 'https://t.me/c/3734713069/151', type: 'practice' },
+    { id: 106, title: 'Что такое время и как его ощущаем', link: 'https://t.me/c/3734713069/152', type: 'podcast' },
+    { id: 107, title: 'Душ с холодной водой возвращает осознанность', link: 'https://t.me/c/3734713069/153', type: 'practice' },
+    
+    { id: 108, title: 'Замороженный', link: 'https://t.me/c/3734713069/154', type: 'podcast' },
+    { id: 109, title: 'Как вернуть авторство своей жизни', link: 'https://t.me/c/3734713069/156', type: 'practice' },
+    { id: 110, title: 'Заслуживающие любовь', link: 'https://t.me/c/3734713069/157', type: 'podcast' },
+    { id: 111, title: 'Выйди из чужого загона', link: 'https://t.me/c/3734713069/158', type: 'podcast' }
+    
   ],
 
   curated: {
     meditations: [13,15,19,25,33,38,39,41,46,51],
-    lectures: [17,26,31,47,48],
-    practices: [20,21,22,23,24],
+    lectures: [17,26,31,47,48,100],
+    practices: [20,21,22,23,24,103,105,107,109],
     addiction: [14,16,24,70,71,72],
     materials: [30,32,40,49]
   }
