@@ -205,6 +205,7 @@ window.APP_DATA = {
     
     { id: 100, title: 'Красный уровень', link: 'https://t.me/c/3734713069/146', type: 'lecture' },
     { id: 101, title: 'Наша идентичность', link: 'https://t.me/c/3734713069/147', type: 'podcast' },
+    
     { id: 102, title: 'Остановись и посмотри на себя', link: 'https://t.me/c/3734713069/148', type: 'podcast' },
     { id: 103, title: 'Техника субъективный зазор', link: 'https://t.me/c/3734713069/149', type: 'practice' },
     { id: 104, title: 'Как ты мыслишь?', link: 'https://t.me/c/3734713069/150', type: 'podcast' },
@@ -215,16 +216,48 @@ window.APP_DATA = {
     { id: 108, title: 'Замороженный', link: 'https://t.me/c/3734713069/154', type: 'podcast' },
     { id: 109, title: 'Как вернуть авторство своей жизни', link: 'https://t.me/c/3734713069/156', type: 'practice' },
     { id: 110, title: 'Заслуживающие любовь', link: 'https://t.me/c/3734713069/157', type: 'podcast' },
-    { id: 111, title: 'Выйди из чужого загона', link: 'https://t.me/c/3734713069/158', type: 'podcast' }
+    { id: 111, title: 'Выйди из чужого загона', link: 'https://t.me/c/3734713069/158', type: 'podcast' },
+    { id: 112, title: 'Как увидеть себя', link: 'https://t.me/c/3734713069/159', type: 'podcast' },
+
+    { id: 113, title: 'Я не знаю кто я — Мозаика', link: 'https://t.me/c/3734713069/160', type: 'podcast' },
+    { id: 114, title: 'Точка наблюдения за собой', link: 'https://t.me/c/3734713069/161', type: 'podcast' },
+    { id: 115, title: 'Мета-позиция', link: 'https://t.me/c/3734713069/162', type: 'practice' },
+
+    { id: 116, title: 'Реактивная вынужденная личность', link: 'https://t.me/c/3734713069/163', type: 'podcast' },
+    { id: 117, title: 'Техника: как найти Хочу и Надо', link: 'https://t.me/c/3734713069/164', type: 'practice' },
+    { id: 118, title: 'Хочу и надо', link: 'https://t.me/c/3734713069/165', type: 'material' },
+    { id: 119, title: 'Телесный компас', link: 'https://t.me/c/3734713069/166', type: 'practice' },
+    { id: 120, title: 'Теневая сторона', link: 'https://t.me/c/3734713069/167', type: 'practice' },
+    { id: 121, title: 'Энергия «Хочу»', link: 'https://t.me/c/3734713069/168', type: 'podcast' },
+    { id: 122, title: 'Стань для себя вдохновением', link: 'https://t.me/c/3734713069/169', type: 'podcast' },
+
+    { id: 123, title: 'Нестабильная идентичность', link: 'https://t.me/c/3734713069/170', type: 'podcast' },
+    { id: 124, title: 'Самооценка и самоценность', link: 'https://t.me/c/3734713069/171', type: 'podcast' },
+    { id: 125, title: 'Внутренний стержень', link: 'https://t.me/c/3734713069/172', type: 'podcast' },
+    { id: 126, title: 'Верни себе своё мнение', link: 'https://t.me/c/3734713069/173', type: 'podcast' },
+    { id: 127, title: 'Практика «Якорь»', link: 'https://t.me/c/3734713069/175', type: 'practice' },
+    { id: 128, title: 'Не покидай свой внутренний мир', link: 'https://t.me/c/3734713069/176', type: 'podcast' },
+
+    { id: 129, title: 'Избегающая идентичность', link: 'https://t.me/c/3734713069/177', type: 'podcast' },
+    { id: 130, title: 'Не анализируй', link: 'https://t.me/c/3734713069/178', type: 'podcast' },
+    { id: 131, title: 'Умение говорить НЕТ', link: 'https://t.me/c/3734713069/179', type: 'podcast' },
+    { id: 132, title: 'Скажи себе ДА', link: 'https://t.me/c/3734713069/180', type: 'podcast' },
+    { id: 133, title: 'Как изменить отношение к болезненным чувствам', link: 'https://t.me/c/3734713069/181', type: 'podcast' },
+    { id: 134, title: 'От чего бегут в зависимость', link: 'https://t.me/c/3734713069/182', type: 'podcast' },
+    { id: 135, title: 'Как справиться с болезненными эмоциями', link: 'https://t.me/c/3734713069/183', type: 'podcast' },
+    { id: 136, title: 'Запрет на самозащиту', link: 'https://t.me/c/3734713069/184', type: 'podcast' },
+
+    { id: 137, title: 'Почему я несчастный, когда всё хорошо / Десинхронизированная идентичность', link: 'https://t.me/c/3734713069/185', type: 'podcast' },
+    { id: 138, title: 'Что делать, когда ничего не хочется делать', link: 'https://t.me/c/3734713069/186', type: 'podcast' }
     
   ],
 
   curated: {
     meditations: [13,15,19,25,33,38,39,41,46,51],
     lectures: [17,26,31,47,48,100],
-    practices: [20,21,22,23,24,103,105,107,109],
-    addiction: [14,16,24,70,71,72],
-    materials: [30,32,40,49]
+    practices: [20,21,22,23,24,103,105,107,109,115,117,119,120,127],
+    addiction: [14,16,24,70,71,72,134],
+    materials: [30,32,40,49,118]
   }
 
 };
