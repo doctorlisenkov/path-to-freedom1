@@ -114,12 +114,33 @@ window.APP_DATA = {
     129, 130, 131, 132, 133, 134, 135, 136,
     137, 138]
 },
-    { id: 'phase-9', title: 'Этап 9. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
-    { id: 'phase-10', title: 'Этап 10. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
-    { id: 'phase-11', title: 'Этап 11. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
-    { id: 'phase-12', title: 'Этап 12. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
-    { id: 'phase-13', title: 'Этап 13. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
-    { id: 'phase-14', title: 'Этап 14. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
+{
+  id: 'phase-9',
+  title: 'Этап 9. Принципы движения',
+  description: 'Как двигаться без насилия над собой: через свои нормы, язык, мечту и отдых.',
+  status: 'available',
+  items: [139, 140, 141, 142, 143, 144, 145, 146, 147]
+},
+{
+  id: 'phase-10',
+  title: 'Этап 10. Синий уровень',
+  description: 'Нормы, правила, структура, принадлежность и взрослая дисциплина без потери себя.',
+  status: 'available',
+  items: [148, 149]
+},
+{
+  id: 'phase-11',
+  title: 'Этап 11. Манипуляции',
+  description: 'Как видеть давление, ложную близость, страх, вину, стыд, обесценивание и возвращать себе свободу.',
+  status: 'available',
+  items: [150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161]
+},
+{ id: 'phase-12', title: 'Этап 12. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
+{ id: 'phase-13', title: 'Этап 13. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
+{ id: 'phase-14', title: 'Этап 14. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
+{ id: 'phase-15', title: 'Этап 15. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
+{ id: 'phase-16', title: 'Этап 16. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
+{ id: 'phase-17', title: 'Этап 17. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
   ],
 
   items: [
@@ -253,14 +274,40 @@ window.APP_DATA = {
     { id: 136, title: 'Запрет на самозащиту', link: 'https://t.me/c/3734713069/184', type: 'podcast' },
 
     { id: 137, title: 'Почему я несчастный, когда всё хорошо / Десинхронизированная идентичность', link: 'https://t.me/c/3734713069/185', type: 'podcast' },
-    { id: 138, title: 'Что делать, когда ничего не хочется делать', link: 'https://t.me/c/3734713069/186', type: 'podcast' }
+    { id: 138, title: 'Что делать, когда ничего не хочется делать', link: 'https://t.me/c/3734713069/186', type: 'podcast' },
+
+    { id: 139, title: 'Познавай, а не достигай', link: 'https://t.me/c/3734713069/187', type: 'podcast' },
+    { id: 140, title: 'Верни себе авторство', link: 'https://t.me/c/3734713069/189', type: 'podcast' },
+    { id: 141, title: 'Чьими нормами ты живёшь', link: 'https://t.me/c/3734713069/191', type: 'podcast' },
+    { id: 142, title: 'Сила слова. Часть 1. Чем ты питаешься', link: 'https://t.me/c/3734713069/192', type: 'podcast' },
+    { id: 143, title: 'Сила слова. Часть 2. Следи за своими словами', link: 'https://t.me/c/3734713069/194', type: 'podcast' },
+    { id: 144, title: 'Ограничивающие убеждения', link: 'https://t.me/c/3734713069/195', type: 'podcast' },
+    { id: 145, title: 'Мечтай', link: 'https://t.me/c/3734713069/196', type: 'podcast' },
+    { id: 146, title: 'Отдых — это важно', link: 'https://t.me/c/3734713069/197', type: 'podcast' },
+    { id: 147, title: 'Не торопись', link: 'https://t.me/c/3734713069/198', type: 'podcast' },
+
+    { id: 148, title: 'Синий уровень', link: 'https://t.me/c/3734713069/204', type: 'lecture' },
+    { id: 149, title: 'Задание: синий уровень', link: 'https://t.me/c/3734713069/205', type: 'practice' },
+
+    { id: 150, title: 'Одиночество: как справиться', link: 'https://t.me/c/3734713069/209', type: 'podcast' },
+    { id: 151, title: 'Внутренний стержень: как взрастить внутреннюю силу', link: 'https://t.me/c/3734713069/210', type: 'podcast' },
+    { id: 152, title: 'Виды манипуляций', link: 'https://t.me/c/3734713069/211', type: 'podcast' },
+    { id: 153, title: 'Манипуляция страхом', link: 'https://t.me/c/3734713069/212', type: 'podcast' },
+    { id: 154, title: 'Манипуляция беспомощностью', link: 'https://t.me/c/3734713069/213', type: 'podcast' },
+    { id: 155, title: 'Манипуляция сравнением', link: 'https://t.me/c/3734713069/214', type: 'podcast' },
+    { id: 156, title: 'Манипуляция обесцениванием', link: 'https://t.me/c/3734713069/215', type: 'podcast' },
+    { id: 157, title: 'Манипуляция: провокация на гнев', link: 'https://t.me/c/3734713069/216', type: 'podcast' },
+    { id: 158, title: 'Манипуляция: давление на боль', link: 'https://t.me/c/3734713069/217', type: 'podcast' },
+    { id: 159, title: 'Манипуляция недоступностью', link: 'https://t.me/c/3734713069/218', type: 'podcast' },
+    { id: 160, title: 'Как становятся манипуляторами', link: 'https://t.me/c/3734713069/219', type: 'podcast' },
+    { id: 161, title: 'Как справиться с манипуляторами', link: 'https://t.me/c/3734713069/220', type: 'podcast' }
     
   ],
 
   curated: {
     meditations: [13,15,19,25,33,38,39,41,46,51],
-    lectures: [17,26,31,47,48,100],
-    practices: [20,21,22,23,24,103,105,107,109,115,117,119,120,127],
+    lectures: [17,26,31,47,48,100,148],
+    practices: [20,21,22,23,24,103,105,107,109,115,117,119,120,127,149],
     addiction: [14,16,24,70,71,72,134],
     materials: [30,32,40,49,118]
   }
