@@ -135,9 +135,21 @@ window.APP_DATA = {
   status: 'available',
   items: [150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161]
 },
-{ id: 'phase-12', title: 'Этап 12. Стыд и вина', description: 'Внутренний суд и самообесценивание.', status: 'planned' },
-{ id: 'phase-13', title: 'Этап 13. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
-{ id: 'phase-14', title: 'Этап 14. Зависимость', description: 'Тяга, срыв и восстановление.', status: 'planned' },
+{
+  id: 'phase-12',
+  title: 'Этап 12. Стыд и вина',
+  description: 'Как вина, стыд и позор становятся образом жизни и не дают человеку двигаться дальше.',
+  status: 'available',
+  items: [162, 163, 164, 165, 166, 167, 168]
+},
+{
+  id: 'phase-13',
+  title: 'Этап 13. Зависимость',
+  description: 'Идентичность зависимого, специалисты, осознанность, созависимость и выход из роли полезного.',
+  status: 'available',
+  items: [169, 170, 171, 172, 173, 174, 175]
+},
+{ id: 'phase-14', title: 'Этап 14. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
 { id: 'phase-15', title: 'Этап 15. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
 { id: 'phase-16', title: 'Этап 16. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
 { id: 'phase-17', title: 'Этап 17. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
@@ -300,7 +312,23 @@ window.APP_DATA = {
     { id: 158, title: 'Манипуляция: давление на боль', link: 'https://t.me/c/3734713069/217', type: 'podcast' },
     { id: 159, title: 'Манипуляция недоступностью', link: 'https://t.me/c/3734713069/218', type: 'podcast' },
     { id: 160, title: 'Как становятся манипуляторами', link: 'https://t.me/c/3734713069/219', type: 'podcast' },
-    { id: 161, title: 'Как справиться с манипуляторами', link: 'https://t.me/c/3734713069/220', type: 'podcast' }
+    { id: 161, title: 'Как справиться с манипуляторами', link: 'https://t.me/c/3734713069/220', type: 'podcast' },
+
+    { id: 162, title: 'Стыд, вина, позор как образ жизни', link: 'https://t.me/c/3734713069/222', type: 'podcast' },
+    { id: 163, title: 'Вина: я плохая мать', link: 'https://t.me/c/3734713069/223', type: 'podcast' },
+    { id: 164, title: 'Вина за ошибку', link: 'https://t.me/c/3734713069/226', type: 'podcast' },
+    { id: 165, title: 'Вина за отказ', link: 'https://t.me/c/3734713069/227', type: 'podcast' },
+    { id: 166, title: 'Вина перед родителями', link: 'https://t.me/c/3734713069/229', type: 'podcast' },
+    { id: 167, title: 'Поиск виноватых', link: 'https://t.me/c/3734713069/230', type: 'podcast' },
+    { id: 168, title: 'Стыд и вина за зависимость', link: 'https://t.me/c/3734713069/232', type: 'podcast' },
+
+    { id: 169, title: 'Зависимая идентичность', link: 'https://t.me/c/3734713069/233', type: 'podcast' },
+    { id: 170, title: 'Специалисты по зависимостям', link: 'https://t.me/c/3734713069/234', type: 'podcast' },
+    { id: 171, title: 'Специалисты по зависимостям. Часть 2', link: 'https://t.me/c/3734713069/235', type: 'podcast' },
+    { id: 172, title: 'Осознанность', link: 'https://t.me/c/3734713069/238', type: 'podcast' },
+    { id: 173, title: 'Созависимость', link: 'https://t.me/c/3734713069/239', type: 'podcast' },
+    { id: 174, title: 'Созависимость. Часть 2', link: 'https://t.me/c/3734713069/241', type: 'podcast' },
+    { id: 175, title: 'Перестань быть полезным', link: 'https://t.me/c/3734713069/242', type: 'podcast' }
     
   ],
 
@@ -308,7 +336,7 @@ window.APP_DATA = {
     meditations: [13,15,19,25,33,38,39,41,46,51],
     lectures: [17,26,31,47,48,100,148],
     practices: [20,21,22,23,24,103,105,107,109,115,117,119,120,127,149],
-    addiction: [14,16,24,70,71,72,134],
+    addiction: [14,16,24,70,71,72,134,168,169,170,171,172,173,174,175],
     materials: [30,32,40,49,118]
   }
 
