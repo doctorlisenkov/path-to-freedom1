@@ -149,10 +149,24 @@ window.APP_DATA = {
   status: 'available',
   items: [169, 170, 171, 172, 173, 174, 175]
 },
-{ id: 'phase-14', title: 'Этап 14. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
-{ id: 'phase-15', title: 'Этап 15. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
-{ id: 'phase-16', title: 'Этап 16. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
-{ id: 'phase-17', title: 'Этап 17. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
+    {
+  id: 'phase-14',
+  title: 'Этап 14. Границы',
+  description: 'Личные границы, безопасность, мотивы людей, самозащита и сохранение своего внутреннего мира.',
+  status: 'available',
+  items: [176, 177, 178, 179, 180, 181, 182, 183]
+},
+{
+  id: 'phase-15',
+  title: 'Этап 15. Самость и личное развитие',
+  description: 'Переход к авторству, предназначение, оригинальность, взрослая дисциплина и умение принимать болезненные решения.',
+  status: 'available',
+  items: [184, 185, 186, 187, 188, 189, 190, 191, 192, 193]
+},
+{ id: 'phase-16', title: 'Этап 16. Травма', description: 'Глубинные механизмы психики.', status: 'planned' },
+{ id: 'phase-17', title: 'Этап 17. Отношения', description: 'Границы, близость и привязанность.', status: 'planned' },
+{ id: 'phase-18', title: 'Этап 18. Опора', description: 'Самооценка и взрослая позиция.', status: 'planned' },
+{ id: 'phase-19', title: 'Этап 19. Новая жизнь', description: 'Созидание и новая идентичность.', status: 'planned' }
   ],
 
   items: [
@@ -328,14 +342,34 @@ window.APP_DATA = {
     { id: 172, title: 'Осознанность', link: 'https://t.me/c/3734713069/238', type: 'podcast' },
     { id: 173, title: 'Созависимость', link: 'https://t.me/c/3734713069/239', type: 'podcast' },
     { id: 174, title: 'Созависимость. Часть 2', link: 'https://t.me/c/3734713069/241', type: 'podcast' },
-    { id: 175, title: 'Перестань быть полезным', link: 'https://t.me/c/3734713069/242', type: 'podcast' }
+    { id: 175, title: 'Перестань быть полезным', link: 'https://t.me/c/3734713069/242', type: 'podcast' },
+    
+    { id: 176, title: 'Что такое личные границы', link: 'https://t.me/c/3734713069/245', type: 'podcast' },
+    { id: 177, title: 'Обеспечь себе безопасность', link: 'https://t.me/c/3734713069/246', type: 'podcast' },
+    { id: 178, title: 'Смотри на мотивы', link: 'https://t.me/c/3734713069/247', type: 'podcast' },
+    { id: 179, title: 'Техника пустой стул', link: 'https://t.me/c/3734713069/248', type: 'practice' },
+    { id: 180, title: 'Как выстраивать собственные границы', link: 'https://t.me/c/3734713069/249', type: 'podcast' },
+    { id: 181, title: 'Не давай разрушить свой мир', link: 'https://t.me/c/3734713069/250', type: 'podcast' },
+    { id: 182, title: 'Запрет на самозащиту', link: 'https://t.me/c/3734713069/251', type: 'podcast' },
+    { id: 183, title: 'Ты просто не умеешь смеяться над собой', link: 'https://t.me/c/3734713069/252', type: 'podcast' },
+
+    { id: 184, title: 'Сине-оранжевый уровень', link: 'https://t.me/c/3734713069/256', type: 'podcast' },
+    { id: 185, title: 'Из синего в оранжевый', link: 'https://t.me/c/3734713069/257', type: 'podcast' },
+    { id: 186, title: 'Предназначение', link: 'https://t.me/c/3734713069/258', type: 'podcast' },
+    { id: 187, title: 'Как стать оригиналом', link: 'https://t.me/c/3734713069/259', type: 'podcast' },
+    { id: 188, title: 'Это всё ты делаешь с собой', link: 'https://t.me/c/3734713069/260', type: 'podcast' },
+    { id: 189, title: 'Убей в себе халявщика', link: 'https://t.me/c/3734713069/261', type: 'podcast' },
+    { id: 190, title: 'Делай то, что не лень', link: 'https://t.me/c/3734713069/262', type: 'podcast' },
+    { id: 191, title: 'Вспомните себя', link: 'https://t.me/c/3734713069/263', type: 'podcast' },
+    { id: 192, title: 'Не наказывайте, рассуждайте', link: 'https://t.me/c/3734713069/264', type: 'podcast' },
+    { id: 193, title: 'Как принимать болезненные решения', link: 'https://t.me/c/3734713069/265', type: 'podcast' }
     
   ],
 
   curated: {
     meditations: [13,15,19,25,33,38,39,41,46,51],
     lectures: [17,26,31,47,48,100,148],
-    practices: [20,21,22,23,24,103,105,107,109,115,117,119,120,127,149],
+    practices: [20,21,22,23,24,103,105,107,109,115,117,119,120,127,149,179],
     addiction: [14,16,24,70,71,72,134,168,169,170,171,172,173,174,175],
     materials: [30,32,40,49,118]
   }
