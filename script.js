@@ -1,138 +1,401 @@
+// =========================================================
+// TELEGRAM MINI APP
+// =========================================================
 const tg = window.Telegram?.WebApp || null;
-const D = window.APP_DATA;
-const ITEMS = new Map(D.items.map(i => [i.id, i]));
-const SECTIONS = new Map(D.sections.map(s => [s.id, s]));
-const TYPES = { meditation: 'медитация', lecture: 'лекция', practice: 'практика', material: 'материал' };
 
-// Короткие пояснения под разделами. Меняй текст здесь.
-const NOTES = {
-  addiction: 'Если сейчас очень тяжело — позвони близкому человеку или в экстренную службу 112. Эти материалы не заменяют врача.'
+// =========================================================
+// 1. СОСТОЯНИЕ ПРИЛОЖЕНИЯ
+// =========================================================
+const state = {
+  activeView: 'home'
 };
 
-const $ = id => document.getElementById(id);
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const norm = s => s.toLowerCase().replaceAll('ё', 'е');
+// =========================================================
+// 2. ПОДПИСИ ТИПОВ МАТЕРИАЛОВ
+// =========================================================
+const TYPE_LABELS = {
+  meditation: 'Медитация',
+  lecture: 'Лекция',
+  practice: 'Практика',
+  material: 'Материал',
+  podcast: 'Размышление'
+};
 
-// ---------- прогресс ----------
-const KEY = 'ptf:seen';
-let seen = new Set();
-try { seen = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch {}
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...seen])); } catch {} };
+// =========================================================
+// 3. МЕТА-ДАННЫЕ ЭКРАНОВ
+// =========================================================
+const VIEW_META = {
+  home: {
+    title: '',
+    subtitle: '',
+    theme: 'theme-home'
+  },
+  'full-path': {
+    title: 'Основной маршрут',
+    subtitle: 'Последовательный путь через лекции, практики и медитации. Начни смотреть сначала. Проходи этапы в своём темпе и возвращайся к важным моментам.',
+    theme: 'theme-path'
+  },
+  meditations: {
+    title: 'Медитации',
+    subtitle: 'Практики выхода в состояние наблюдателя.',
+    theme: 'theme-meditations'
+  },
+  lectures: {
+    title: 'Лекции',
+    subtitle: 'Структурные материалы для глубокого понимания и вдумчивого изучения.',
+    theme: 'theme-lectures'
+  },
+  practices: {
+    title: 'Техники',
+    subtitle: 'Телесные и прикладные инструменты, которые начинают работать сразу после применения.',
+    theme: 'theme-practices'
+  },
+  materials: {
+    title: 'Материалы',
+    subtitle: 'Вспомогательные таблицы, списки и практики, чтобы всё было в одном месте.',
+    theme: 'theme-materials'
+  },
+  addiction: {
+    title: 'Работа с зависимостью',
+    subtitle: 'Ответы на вопросы о зависимости, восстановлении, мотивации, кризисные моменты тяги и срывов.',
+    theme: 'theme-start'
+  }
+};
 
-// ---------- данные ----------
-const phases = D.phases || [];
-const routeIds = phases.filter(p => p.status !== 'planned').flatMap(p => p.items || []).filter(id => ITEMS.has(id));
-const nextId = () => routeIds.find(id => !seen.has(id));
-const phaseOf = new Map();
-phases.forEach(p => (p.items || []).forEach(id => phaseOf.set(id, p)));
-const split = t => { const m = /^(Этап \d+)\.\s*(.+)$/.exec(t); return m ? [m[1], m[2].replace(/\.$/, '')] : ['', t.replace(/\.$/, '')]; };
+// =========================================================
+// 4. SVG-ИКОНКИ ДЛЯ КАРТОЧЕК НА ГЛАВНОЙ
+// =========================================================
+const ICONS = {
+  meditations: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <circle cx="12" cy="12" r="7.6"></circle>
+    </svg>`,
 
-// ---------- шаблоны ----------
-const row = (it, sub) => `
-  <a class="row${seen.has(it.id) ? ' seen' : ''}" href="${esc(it.link)}" data-id="${it.id}" target="_blank" rel="noopener">
-    <span class="t">${esc(it.title)}</span><span class="m">${esc(sub ?? TYPES[it.type] ?? '')}</span>
-  </a>`;
+  lectures: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path d="M4.8 6.2c0-.66.54-1.2 1.2-1.2H9.8c1.05 0 2.04.33 2.88.96L13 6.2l.32-.24A4.78 4.78 0 0 1 16.2 5H20c.66 0 1.2.54 1.2 1.2v11.9c0 .5-.4.9-.9.9h-4.1c-1.02 0-2 .3-2.82.88l-.38.26-.38-.26A4.84 4.84 0 0 0 9.8 19H5.7a.9.9 0 0 1-.9-.9V6.2Z"></path>
+      <path d="M12.98 6.15V19.6"></path>
+    </svg>`,
 
-function home() {
-  const nx = ITEMS.get(nextId());
-  const done = routeIds.filter(id => seen.has(id)).length;
-  const pct = Math.round(done / (routeIds.length || 1) * 100);
-  const secs = D.sections.filter(s => s.id !== 'full-path');
+  practices: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.9"></circle>
+      <path d="M12 3.2v2.4"></path>
+      <path d="M12 18.4v2.4"></path>
+      <path d="M20.8 12h-2.4"></path>
+      <path d="M5.6 12H3.2"></path>
+      <path d="M17.9 6.1 16.3 7.7"></path>
+      <path d="M7.7 16.3 6.1 17.9"></path>
+      <path d="M17.9 17.9 16.3 16.3"></path>
+      <path d="M7.7 7.7 6.1 6.1"></path>
+    </svg>`,
+
+  addiction: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path d="M9.15 14.85 7.1 16.9a2.9 2.9 0 0 1-4.1-4.1L5.95 9.85"></path>
+      <path d="M14.85 9.15 16.9 7.1a2.9 2.9 0 0 1 4.1 4.1l-2.95 2.95"></path>
+      <path d="M9.35 14.65 14.65 9.35"></path>
+    </svg>`,
+
+  materials: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path d="M7.1 3.9h6.35l3.45 3.45v12.75a1 1 0 0 1-1 1H7.1a1 1 0 0 1-1-1V4.9a1 1 0 0 1 1-1Z"></path>
+      <path d="M13.45 3.9v3.55h3.45"></path>
+      <path d="M9.1 12.15h5.8"></path>
+      <path d="M9.1 15.2h5.8"></path>
+    </svg>`
+};
+
+// =========================================================
+// 5. УТИЛИТЫ
+// =========================================================
+function byId(id) {
+  return document.getElementById(id);
+}
+
+const ITEMS = new Map(
+  (window.APP_DATA?.items || []).map(item => [item.id, item])
+);
+
+function escapeHtml(value = '') {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+// =========================================================
+// 6. ШАБЛОНЫ ОТДЕЛЬНЫХ ССЫЛОК
+// =========================================================
+function listItem(item) {
   return `
-    <header class="head"><p class="eyebrow">${esc(D.brand.subtitle)}</p><h1>${esc(D.brand.title)}</h1></header>
-    <a class="lead glass" href="#full-path">
-      <span class="eyebrow">${done ? 'Продолжить' : 'Начать путь'}</span>
-      <span class="lead-t">${nx ? esc(nx.title) : 'Путь пройден'}</span>
-      <span class="bar"><i style="--p:${pct}%"></i></span>
-      <span class="m">${done} из ${routeIds.length}</span>
+    <a class="path-item" href="${escapeHtml(item.link)}" rel="noopener noreferrer">
+      <span class="list-item-title">${escapeHtml(item.title)}</span>
+      <span class="list-item-type">${TYPE_LABELS[item.type] || 'Материал'}</span>
     </a>
-    <nav id="secs" class="grid">${secs.map(s => `
-      <a class="tile glass" href="#${esc(s.id)}"><span class="m">${(D.curated[s.id] || []).length}</span><span class="tt">${esc(s.title)}</span></a>`).join('')}
-    </nav>
-    <div id="res" class="glass" hidden></div>
-    <div class="dock glass"><input id="q" type="search" placeholder="Поиск по названию" autocomplete="off" aria-label="Поиск"></div>`;
+  `;
 }
 
-function route() {
-  const nx = nextId();
-  return phases.map(p => {
-    const [e, t] = split(p.title);
-    if (p.status === 'planned') return `<div class="soon glass"><span class="eyebrow">${e}</span><span class="pt">${esc(t)}</span><span class="m">скоро</span></div>`;
-    const ids = (p.items || []).filter(id => ITEMS.has(id));
-    const n = ids.filter(id => seen.has(id)).length;
-    return `
-      <details class="glass" name="phase"${ids.includes(nx) ? ' open' : ''}>
-        <summary><span class="eyebrow">${e}</span><span class="pt">${esc(t)}</span><span class="m"><b>${n}</b> / ${ids.length}</span><span class="bar"><i style="--p:${Math.round(n / (ids.length || 1) * 100)}%"></i></span></summary>
-        <p class="pd">${esc(p.description)}</p>
-        <div class="list">${ids.map(id => row(ITEMS.get(id))).join('')}</div>
-      </details>`;
+// =========================================================
+// 7. КАРТОЧКИ ЭТАПОВ ОСНОВНОГО МАРШРУТА
+// =========================================================
+function plannedPhaseCard(phase) {
+  return `
+    <article class="phase phase-planned fade-up fade-2 is-static">
+      <div class="phase-static-head">
+        <div>
+          <div class="phase-title">${escapeHtml(phase.title)}</div>
+          <div class="phase-desc">${escapeHtml(phase.description)}</div>
+        </div>
+        <span class="phase-badge">Скоро</span>
+      </div>
+    </article>
+  `;
+}
+
+function availablePhaseCard(phase) {
+  const items = (phase.items || [])
+    .map(id => ITEMS.get(id))
+    .filter(Boolean)
+    .map(listItem)
+    .join('');
+
+  return `
+    <details class="phase">
+      <summary>
+        <div>
+          <div class="phase-title">${escapeHtml(phase.title)}</div>
+          <div class="phase-desc">${escapeHtml(phase.description)}</div>
+        </div>
+      </summary>
+      <div class="phase-content">
+        <div class="path-list">
+          ${items}
+        </div>
+      </div>
+    </details>
+  `;
+}
+
+// =========================================================
+// 8. РЕНДЕР ГЛАВНОЙ СТРАНИЦЫ
+// =========================================================
+function renderHome() {
+  const sections = window.APP_DATA.sections || [];
+  const hero = sections.find(section => section.id === 'full-path');
+  const secondary = sections.filter(section => section.id !== 'full-path');
+  const topTiles = secondary.slice(0, 4);
+  const bottomTile = secondary[4];
+
+  return `
+    <section class="view-shell home-shell">
+      <section class="hero-card hero-card-simple clickable fade-up fade-1" data-view="full-path">
+        <div class="hero-card-text">
+          <h2>${escapeHtml(hero?.title || 'Основной маршрут')}</h2>
+          <p>${escapeHtml(hero?.description || '')}</p>
+        </div>
+      </section>
+
+      <section class="secondary-grid fade-up fade-2">
+        ${topTiles.map(section => `
+          <article class="mini-card clickable" data-view="${escapeHtml(section.id)}">
+            <div class="mini-icon">${ICONS[section.id] || ''}</div>
+            <div class="mini-title">${escapeHtml(section.title)}</div>
+          </article>
+        `).join('')}
+      </section>
+
+      ${bottomTile ? `
+        <section class="wide-tile-wrap fade-up fade-3">
+          <article class="mini-card mini-card-wide clickable" data-view="${escapeHtml(bottomTile.id)}">
+            <div class="mini-icon">${ICONS[bottomTile.id] || ''}</div>
+            <div class="mini-title">${escapeHtml(bottomTile.title)}</div>
+          </article>
+        </section>
+      ` : ''}
+    </section>
+  `;
+}
+
+// =========================================================
+// 9. РЕНДЕР ОСНОВНОГО МАРШРУТА
+// =========================================================
+function renderFullPath() {
+  const phases = window.APP_DATA.phases || [];
+
+  const html = phases.map((phase) => {
+    if (phase.status === 'planned') {
+      return plannedPhaseCard(phase);
+    }
+    return availablePhaseCard(phase);
   }).join('');
+
+  return `
+    <section class="view-shell">
+      <section class="phases-stack">
+        ${html}
+      </section>
+    </section>
+  `;
 }
 
-function section(id) {
-  const items = (D.curated[id] || []).map(i => ITEMS.get(i)).filter(Boolean);
-  return `<div class="list glass">${items.map(i => row(i)).join('')}</div>${NOTES[id] ? `<p class="note">${esc(NOTES[id])}</p>` : ''}`;
+// =========================================================
+// 10. РЕНДЕР ОТДЕЛЬНЫХ РАЗДЕЛОВ
+// =========================================================
+function renderCurated(viewId) {
+  const curated = window.APP_DATA.curated || {};
+  const ids = curated[viewId] || [];
+
+  const items = ids
+    .map(id => ITEMS.get(id))
+    .filter(Boolean)
+    .map(listItem)
+    .join('');
+
+  return `
+    <section class="view-shell">
+      <div class="phase-content">
+        <div class="path-list fade-up fade-1">
+          ${items}
+        </div>
+      </div>
+    </section>
+  `;
 }
 
-function bindSearch() {
-  const q = $('q'), res = $('res'), secs = $('secs');
-  q.addEventListener('input', () => {
-    const s = norm(q.value.trim());
-    secs.hidden = !!s; res.hidden = !s;
-    if (!s) return;
-    const hits = D.items.filter(i => norm(i.title).includes(s)).slice(0, 30);
-    res.innerHTML = hits.length
-      ? hits.map(i => row(i, split(phaseOf.get(i.id)?.title || '')[1] || TYPES[i.type] || '')).join('')
-      : '<p class="empty">Ничего не найдено</p>';
+// =========================================================
+// 11. ПЛАВНАЯ СМЕНА КОНТЕНТА
+// =========================================================
+function animateContentSwap(root, html) {
+  root.classList.remove('is-visible');
+
+  requestAnimationFrame(() => {
+    root.innerHTML = html;
+
+    requestAnimationFrame(() => {
+      root.classList.add('is-visible');
+      bindClicks();
+    });
   });
 }
 
-// ---------- навигация ----------
-const view = () => decodeURIComponent(location.hash.slice(1)) || 'home';
+// =========================================================
+// 12. ГЛАВНЫЙ РЕНДЕРЕР
+// =========================================================
+function renderView() {
+  const root = byId('app');
+  const pageTitle = byId('pageTitle');
+  const pageSubtitle = byId('pageSubtitle');
+  const backBtn = byId('backBtn');
+  const meta = VIEW_META[state.activeView] || VIEW_META.home;
 
-function render() {
-  const v = view();
-  if (v !== 'home' && !SECTIONS.has(v)) { location.hash = ''; return; }
-  const meta = SECTIONS.get(v);
-  const root = $('app');
+  document.body.className = meta.theme;
 
-  $('top').hidden = v === 'home' || !!tg;
-  if (tg) v === 'home' ? tg.BackButton.hide() : tg.BackButton.show();
-
-  const head = v === 'home' ? '' : `<header class="head"><h1>${esc(meta.title)}</h1><p>${esc(meta.description)}</p></header>`;
-  const body = v === 'home' ? home() : v === 'full-path' ? route() : section(v);
-
-  root.classList.remove('in');
-  root.innerHTML = head + body;
-  requestAnimationFrame(() => root.classList.add('in'));
-  window.scrollTo(0, 0);
-  if (v === 'home') bindSearch();
-}
-
-// Отметка прогресса. Mini App не закрываем — человек возвращается туда, где остановился.
-document.addEventListener('click', e => {
-  const a = e.target.closest('a.row[data-id]');
-  if (!a) return;
-  seen.add(+a.dataset.id); save();
-  a.classList.add('seen');
-  const d = a.closest('details');
-  if (d) {
-    const k = d.querySelectorAll('.row.seen').length;
-    d.querySelector('summary b').textContent = k;
-    d.querySelector('.bar i').style.setProperty('--p', Math.round(k / d.querySelectorAll('.row').length * 100) + '%');
+  if (pageTitle) {
+    pageTitle.textContent = meta.title;
+    pageTitle.classList.remove('is-letter-title');
   }
-  if (tg?.openTelegramLink && a.href.includes('t.me')) { e.preventDefault(); tg.openTelegramLink(a.getAttribute('href')); }
-});
 
-// ---------- запуск ----------
-const applyTheme = () => {
-  document.documentElement.dataset.theme = tg?.colorScheme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-};
-applyTheme();
-if (tg) {
-  tg.ready(); tg.expand();
-  tg.onEvent('themeChanged', applyTheme);
-  tg.BackButton.onClick(() => { location.hash = ''; });
+  if (pageSubtitle) {
+    pageSubtitle.textContent = meta.subtitle;
+  }
+
+  if (backBtn) {
+    backBtn.hidden = state.activeView === 'home';
+  }
+
+  let html = '';
+
+  if (state.activeView === 'home') {
+    html = renderHome();
+  } else if (state.activeView === 'full-path') {
+    html = renderFullPath();
+  } else {
+    html = renderCurated(state.activeView);
+  }
+
+  animateContentSwap(root, html);
 }
-window.addEventListener('hashchange', render);
-render();
+
+// =========================================================
+// 13. ПЕРЕХОДЫ ПО КАРТОЧКАМ
+// =========================================================
+function bindClicks() {
+  document.querySelectorAll('[data-view]').forEach(node => {
+    node.addEventListener('click', (event) => {
+      const target = event.currentTarget || event.target.closest('[data-view]');
+      if (!target) return;
+
+      state.activeView = target.dataset.view;
+      renderView();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+}
+
+// 14. ОТКРЫТИЕ TELEGRAM-ССЫЛОК
+// =========================================================
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a');
+  if (!link) return;
+ 
+  const href = link.getAttribute('href');
+  if (!href || !href.includes('t.me')) return;
+ 
+  e.preventDefault();
+ 
+  const webApp = window.Telegram?.WebApp;
+ 
+  if (webApp) {
+    // Открываем ссылку, затем закрываем Mini App —
+    // иначе он висит поверх контента
+    if (webApp.openTelegramLink) {
+      webApp.openTelegramLink(href);
+    }
+    setTimeout(() => {
+      webApp.close();
+    }, 300);
+  } else {
+    window.open(href, '_blank', 'noopener,noreferrer');
+  }
+});
+// =========================================================
+// 15. ЗАПУСК ПРИЛОЖЕНИЯ
+// =========================================================
+document.addEventListener('DOMContentLoaded', () => {
+  if (tg) {
+    tg.ready();
+    tg.expand();
+
+    tg.BackButton.show();
+
+    tg.BackButton.onClick(() => {
+      if (state.activeView !== 'home') {
+        state.activeView = 'home';
+        renderView();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        tg.close();
+      }
+    });
+  }
+
+  const backBtn = byId('backBtn');
+  const root = byId('app');
+
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      state.activeView = 'home';
+      renderView();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  if (root) {
+    root.classList.add('app-fade');
+  }
+
+  renderView();
+});
