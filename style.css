@@ -773,3 +773,75 @@ details.phase[open] {
     font-size: 11px;
   }
 }
+
+
+/* =========================================================
+   ЦВЕТОВАЯ СИСТЕМА 2026 (добавлено поверх, всё остальное не тронуто)
+   Каждый раздел — свой мягкий оттенок. Цвета заданы как r,g,b,
+   чтобы легко менять: --c — цвет карточки, --p1/p2/p3 — свечение фона.
+========================================================= */
+:root {
+  --p1: 120, 130, 255;   /* индиго */
+  --p2: 94, 208, 192;    /* лагуна */
+  --p3: 255, 143, 163;   /* роза */
+  --c: 142, 155, 255;
+}
+
+/* оттенок страницы: фон слегка меняет цвет вместе с разделом */
+body.theme-path      { --p1: 142, 155, 255; --p2: 181, 156, 255; --p3: 124, 196, 255; --c: 142, 155, 255; }
+body.theme-meditations { --p1: 94, 208, 192;  --p2: 124, 196, 255; --p3: 142, 155, 255; --c: 94, 208, 192; }
+body.theme-lectures  { --p1: 181, 156, 255; --p2: 142, 155, 255; --p3: 255, 143, 163; --c: 181, 156, 255; }
+body.theme-practices { --p1: 255, 178, 122; --p2: 255, 143, 163; --p3: 181, 156, 255; --c: 255, 178, 122; }
+body.theme-materials { --p1: 124, 196, 255; --p2: 94, 208, 192;  --p3: 142, 155, 255; --c: 124, 196, 255; }
+body.theme-start     { --p1: 255, 143, 163; --p2: 255, 178, 122; --p3: 181, 156, 255; --c: 255, 143, 163; }
+
+/* свечение фона чуть заметнее, но всё ещё воздушное */
+body::before { background: rgba(var(--p1), 0.22); transition: background 1.2s ease; }
+body::after  { background: rgba(var(--p2), 0.17); transition: background 1.2s ease; }
+.shell::before { background: rgba(var(--p3), 0.15); transition: background 1.2s ease; }
+
+/* цвет карточек на главной */
+[data-view="full-path"]  { --c: 142, 155, 255; }
+[data-view="meditations"] { --c: 94, 208, 192; }
+[data-view="lectures"]   { --c: 181, 156, 255; }
+[data-view="practices"]  { --c: 255, 178, 122; }
+[data-view="addiction"]  { --c: 255, 143, 163; }
+[data-view="materials"]  { --c: 124, 196, 255; }
+
+.hero-card,
+.mini-card {
+  border-color: rgba(var(--c), 0.24);
+  background:
+    radial-gradient(130% 120% at 0% 0%, rgba(var(--c), 0.20), transparent 62%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+  box-shadow:
+    0 14px 38px -16px rgba(var(--c), 0.38),
+    0 10px 40px rgba(0, 0, 0, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.hero-card:hover,
+.mini-card:hover {
+  border-color: rgba(var(--c), 0.42);
+  background:
+    radial-gradient(130% 120% at 0% 0%, rgba(var(--c), 0.28), transparent 62%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+}
+
+/* иконки в цвет раздела, с лёгким свечением */
+.mini-icon {
+  color: rgb(var(--c));
+  filter: drop-shadow(0 0 10px rgba(var(--c), 0.45));
+}
+
+/* внутри разделов: акцент берётся из оттенка страницы */
+details.phase[open] {
+  border-color: rgba(var(--c), 0.34);
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(var(--c), 0.14), transparent 60%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.045));
+  box-shadow: 0 14px 38px -18px rgba(var(--c), 0.35), var(--shadow-soft);
+}
+
+.path-item:hover { color: rgb(var(--c)); }
+.path-item:hover .list-item-type { color: rgba(var(--c), 0.9); }

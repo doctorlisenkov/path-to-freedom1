@@ -68,7 +68,10 @@ const VIEW_META = {
 const ICONS = {
   meditations: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-      <circle cx="12" cy="12" r="7.6"></circle>
+      <path d="M12 4.6c2.5 2.4 2.5 6.6 0 10.2-2.5-3.6-2.5-7.8 0-10.2Z"></path>
+      <path d="M12 14.8C8.7 14.8 5.4 12.9 4 9.4c3.5-.3 6.6 1.3 8 5.4Z"></path>
+      <path d="M12 14.8c3.3 0 6.6-1.9 8-5.4-3.5-.3-6.6 1.3-8 5.4Z"></path>
+      <path d="M7.4 18.4c2.8 1.6 6.4 1.6 9.2 0"></path>
     </svg>`,
 
   lectures: `
@@ -79,22 +82,14 @@ const ICONS = {
 
   practices: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-      <circle cx="12" cy="12" r="2.9"></circle>
-      <path d="M12 3.2v2.4"></path>
-      <path d="M12 18.4v2.4"></path>
-      <path d="M20.8 12h-2.4"></path>
-      <path d="M5.6 12H3.2"></path>
-      <path d="M17.9 6.1 16.3 7.7"></path>
-      <path d="M7.7 16.3 6.1 17.9"></path>
-      <path d="M17.9 17.9 16.3 16.3"></path>
-      <path d="M7.7 7.7 6.1 6.1"></path>
+      <path d="M10.48 4.86 L10.71 2.79 L13.29 2.79 L13.52 4.86 A7.3 7.3 0 0 1 15.98 5.88 L17.60 4.57 L19.43 6.40 L18.12 8.02 A7.3 7.3 0 0 1 19.14 10.48 L21.21 10.71 L21.21 13.29 L19.14 13.52 A7.3 7.3 0 0 1 18.12 15.98 L19.43 17.60 L17.60 19.43 L15.98 18.12 A7.3 7.3 0 0 1 13.52 19.14 L13.29 21.21 L10.71 21.21 L10.48 19.14 A7.3 7.3 0 0 1 8.02 18.12 L6.40 19.43 L4.57 17.60 L5.88 15.98 A7.3 7.3 0 0 1 4.86 13.52 L2.79 13.29 L2.79 10.71 L4.86 10.48 A7.3 7.3 0 0 1 5.88 8.02 L4.57 6.40 L6.40 4.57 L8.02 5.88 A7.3 7.3 0 0 1 10.48 4.86Z"></path>
+      <circle cx="12" cy="12" r="3"></circle>
     </svg>`,
 
   addiction: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-      <path d="M9.15 14.85 7.1 16.9a2.9 2.9 0 0 1-4.1-4.1L5.95 9.85"></path>
-      <path d="M14.85 9.15 16.9 7.1a2.9 2.9 0 0 1 4.1 4.1l-2.95 2.95"></path>
-      <path d="M9.35 14.65 14.65 9.35"></path>
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
     </svg>`,
 
   materials: `
