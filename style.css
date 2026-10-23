@@ -847,78 +847,50 @@ details.phase[open] {
 .path-item:hover .list-item-type { color: rgba(var(--c), 0.9); }
 
 
-/* Переход к новой главе перед этапом 15 */
+/* =========================================================
+   ГЛАВЫ ОСНОВНОГО МАРШРУТА — минималистичный разделитель
+========================================================= */
 .chapter-transition {
-  text-align: center;
-  padding: 32px 18px 30px;
-  margin: 8px 0;
+  padding: 28px 18px 4px;
+  text-align: left;
   color: var(--text);
 }
-.chapter-transition-rule {
+
+.chapter-transition-first {
+  padding-top: 4px;
+}
+
+.chapter-transition-kicker {
   display: flex;
   align-items: center;
-  gap: 16px;
-  max-width: 470px;
-  margin: 0 auto 20px;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(var(--c), 0.85);
 }
-.chapter-transition-rule::before,
-.chapter-transition-rule::after {
+
+.chapter-transition-kicker::after {
   content: "";
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(166, 182, 223, .46));
+  background: rgba(255, 255, 255, 0.08);
 }
-.chapter-transition-rule::after {
-  transform: rotate(180deg);
-}
-.chapter-transition-diamond {
-  flex: 0 0 9px;
-  width: 9px;
-  height: 9px;
-  transform: rotate(45deg);
-  border: 1px solid rgba(175, 190, 229, .7);
-  background: rgba(153, 169, 210, .24);
-  border-radius: 2px;
-}
-.chapter-transition-kicker {
-  color: rgba(173, 186, 224, .9);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .22em;
-  margin-bottom: 9px;
-}
+
 .chapter-transition-title {
-  font-size: clamp(22px, 4vw, 28px);
-  line-height: 1.25;
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
   font-weight: 650;
-  letter-spacing: -.025em;
-  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  color: var(--text);
 }
-.chapter-transition-desc {
-  margin: 0 auto;
-  max-width: 440px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-}
+
+
 @media (max-width: 640px) {
-  .chapter-transition { padding: 27px 12px 25px; }
-  .chapter-transition-rule { margin-bottom: 16px; }
-}
-
-
-/* Четыре смысловые главы Основного маршрута */
-.chapter-transition-first {
-  padding-top: 8px;
-  margin-top: 0;
-}
-.chapter-transition-highlight {
-  background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(132, 149, 224, .10), transparent 95%);
-  border-radius: 26px;
-}
-.chapter-transition-highlight .chapter-transition-kicker {
-  color: rgba(195, 205, 247, .98);
-}
-@media (prefers-reduced-motion: reduce) {
-  .chapter-transition, .chapter-transition * { animation: none !important; }
+  .chapter-transition { padding: 26px 16px 4px; }
+  .chapter-transition-first { padding-top: 2px; }
+  .chapter-transition-title { font-size: 19px; }
 }

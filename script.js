@@ -150,7 +150,7 @@ function plannedPhaseCard(phase) {
   `;
 }
 
-function availablePhaseCard(phase) {
+function availablePhaseCard(phase, number) {
   const items = (phase.items || [])
     .map(id => ITEMS.get(id))
     .filter(Boolean)
@@ -161,7 +161,7 @@ function availablePhaseCard(phase) {
     <details class="phase">
       <summary>
         <div>
-          <div class="phase-title">${escapeHtml(phase.title)}</div>
+          <div class="phase-title">${number ? `Этап ${number}. ` : ''}${escapeHtml(phase.title)}</div>
           <div class="phase-desc">${escapeHtml(phase.description)}</div>
         </div>
       </summary>
@@ -245,21 +245,24 @@ function renderFullPath() {
   };
 
   const renderChapterDivider = (chapter, isFirst) => `
-    <div class="chapter-transition${isFirst ? ' chapter-transition-first' : ''}${chapter.number === 'IV' ? ' chapter-transition-highlight' : ''}"
+    <div class="chapter-transition${isFirst ? ' chapter-transition-first' : ''}"
          role="group" aria-label="Глава ${chapter.number}: ${escapeHtml(chapter.title)}">
-      <div class="chapter-transition-rule" aria-hidden="true"><span class="chapter-transition-diamond"></span></div>
-      <div class="chapter-transition-kicker">ГЛАВА ${chapter.number}</div>
+      <div class="chapter-transition-kicker">Глава ${chapter.number}</div>
       <h2 class="chapter-transition-title">${escapeHtml(chapter.title)}</h2>
-      <p class="chapter-transition-desc">${escapeHtml(chapter.description)}</p>
     </div>
   `;
+
+  // Номера этапов считаются автоматически: только для открытых этапов,
+  // в том порядке, в котором они стоят в data.js. Планируемые — без номера.
+  // Чтобы открытый этап шёл без номера, добавь ему в data.js: numbered: false
+  let stepNumber = 0;
 
   const html = phases.map((phase) => {
     const chapter = chapterStarts[phase.id];
     const transition = chapter ? renderChapterDivider(chapter, phase.id === 'phase-1') : '';
     const card = phase.status === 'planned'
       ? plannedPhaseCard(phase)
-      : availablePhaseCard(phase);
+      : availablePhaseCard(phase, phase.numbered === false ? null : ++stepNumber);
     return transition + card;
   }).join('');
 
