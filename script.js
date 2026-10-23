@@ -220,11 +220,21 @@ function renderHome() {
 function renderFullPath() {
   const phases = window.APP_DATA.phases || [];
 
+  const chapterDivider = `
+    <div class="chapter-transition" role="separator" aria-label="Новая глава: Открытие себя">
+      <div class="chapter-transition-rule" aria-hidden="true"><span class="chapter-transition-diamond"></span></div>
+      <div class="chapter-transition-kicker">НОВАЯ ГЛАВА</div>
+      <h2 class="chapter-transition-title">Открытие себя</h2>
+      <p class="chapter-transition-desc">От понимания собственных сценариев к самостоятельной жизни</p>
+    </div>
+  `;
+
   const html = phases.map((phase) => {
-    if (phase.status === 'planned') {
-      return plannedPhaseCard(phase);
-    }
-    return availablePhaseCard(phase);
+    const transition = phase.id === 'phase-15' ? chapterDivider : '';
+    const card = phase.status === 'planned'
+      ? plannedPhaseCard(phase)
+      : availablePhaseCard(phase);
+    return transition + card;
   }).join('');
 
   return `
