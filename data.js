@@ -189,7 +189,7 @@ window.APP_DATA = {
     },
     {
       id: 'phase-19',
-      title: 'Этап 20. Новая жизнь',
+      title: 'Этап 19. Новая жизнь',
       description: 'Созидание и новая идентичность.',
       status: 'planned'
     }

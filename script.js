@@ -220,17 +220,43 @@ function renderHome() {
 function renderFullPath() {
   const phases = window.APP_DATA.phases || [];
 
-  const chapterDivider = `
-    <div class="chapter-transition" role="separator" aria-label="Новая глава: Открытие себя">
+  // Смысловые главы: без вмешательства в данные этапов и Telegram-ссылки.
+  const chapterStarts = {
+    'phase-1': {
+      number: 'I',
+      title: 'Познакомиться с собой',
+      description: 'Первое знакомство с собой: тело, эмоции, семья, зависимость и привычные роли.'
+    },
+    'phase-7': {
+      number: 'II',
+      title: 'Увидеть, кто я',
+      description: 'От кризиса и автоматических реакций к пониманию собственной идентичности.'
+    },
+    'phase-11': {
+      number: 'III',
+      title: 'Освободиться от чужого влияния',
+      description: 'Распознать манипуляции, стыд, зависимость и научиться защищать свои границы.'
+    },
+    'phase-15': {
+      number: 'IV',
+      title: 'Открытие себя',
+      description: 'От понимания собственных сценариев к самостоятельной жизни.'
+    }
+  };
+
+  const renderChapterDivider = (chapter, isFirst) => `
+    <div class="chapter-transition${isFirst ? ' chapter-transition-first' : ''}${chapter.number === 'IV' ? ' chapter-transition-highlight' : ''}"
+         role="group" aria-label="Глава ${chapter.number}: ${escapeHtml(chapter.title)}">
       <div class="chapter-transition-rule" aria-hidden="true"><span class="chapter-transition-diamond"></span></div>
-      <div class="chapter-transition-kicker">НОВАЯ ГЛАВА</div>
-      <h2 class="chapter-transition-title">Открытие себя</h2>
-      <p class="chapter-transition-desc">От понимания собственных сценариев к самостоятельной жизни</p>
+      <div class="chapter-transition-kicker">ГЛАВА ${chapter.number}</div>
+      <h2 class="chapter-transition-title">${escapeHtml(chapter.title)}</h2>
+      <p class="chapter-transition-desc">${escapeHtml(chapter.description)}</p>
     </div>
   `;
 
   const html = phases.map((phase) => {
-    const transition = phase.id === 'phase-15' ? chapterDivider : '';
+    const chapter = chapterStarts[phase.id];
+    const transition = chapter ? renderChapterDivider(chapter, phase.id === 'phase-1') : '';
     const card = phase.status === 'planned'
       ? plannedPhaseCard(phase)
       : availablePhaseCard(phase);

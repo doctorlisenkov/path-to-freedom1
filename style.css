@@ -905,3 +905,20 @@ details.phase[open] {
   .chapter-transition { padding: 27px 12px 25px; }
   .chapter-transition-rule { margin-bottom: 16px; }
 }
+
+
+/* Четыре смысловые главы Основного маршрута */
+.chapter-transition-first {
+  padding-top: 8px;
+  margin-top: 0;
+}
+.chapter-transition-highlight {
+  background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(132, 149, 224, .10), transparent 95%);
+  border-radius: 26px;
+}
+.chapter-transition-highlight .chapter-transition-kicker {
+  color: rgba(195, 205, 247, .98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .chapter-transition, .chapter-transition * { animation: none !important; }
+}
